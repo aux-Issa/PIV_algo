@@ -1,7 +1,7 @@
 %%
 close all;   %全ての図を滅す
 clear;       %全てを無に還す
-tic;         %計算時間計測開始！
+tic;         %計算時間計測開始
 
 
 %%
@@ -77,7 +77,7 @@ data = cell(numfiles,1);   %cell配列の大きさを定義
         end
     data{j,1} = readmatrix(myfilename);
     end
-
+% path要確認
 %     for j = 1:numfiles
 %         if j-1 < 10
 %            myfilename = sprintf('F:/APG/u2.0ms_range50_100images_validation/u2.0ms.6s3cw2c8.00000%d.txt',j-1);
@@ -549,5 +549,5 @@ H = blt_dis / blt_mom;            %形状係数の算出（x方向分布）
 
 
 %%
-toc;   %計算時間計測！
+toc;   %計算時間計測終了
 
