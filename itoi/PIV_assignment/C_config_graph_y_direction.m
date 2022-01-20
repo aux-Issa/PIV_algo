@@ -1,7 +1,9 @@
-A = time_space_mean;
-B = fixed_coord_y(:,1)*10^-3;
+B = time_space_mean/U_b;
+A = x(1,1:n,2)/h;
 figure;plot(A,B);
 scatter(A,B);
 title('velocity distribution of mean mainstream direction')
-xlabel('u[m/s]')
-ylabel('y[m]')
+
+xlabel('y/h')
+ylabel('u/U_b')
+

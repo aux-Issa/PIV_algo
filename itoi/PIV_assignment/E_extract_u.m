@@ -1,5 +1,5 @@
 %速度uのデータのみを取り出し
-u_data = zeros(32384,500);
+u_data = zeros(m*n,num_data);
 for i= 1:num_data
     u_data(:,i) = rmmissing(data{1,i}(:,1));
 end   
