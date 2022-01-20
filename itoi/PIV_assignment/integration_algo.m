@@ -141,10 +141,9 @@ for i=1:num_data
 end 
 
 v_dash = zeros(m*n,num_data);
-
 for i=1:num_data
     for v= 1:m*n
-        v_dash(v,i) = u_dash(v,i) + velocity_data{1,i}(v,2) - raw_time_v_mean(v,1);
+        v_dash(v,i) = v_dash(v,i) + velocity_data{1,i}(v,2) - raw_time_v_mean(v,1);
     end
 end 
 
@@ -171,15 +170,14 @@ space_uv_dash_sum = 0;
 for i=1:m
     space_uv_dash_sum = space_uv_dash_sum + uv_dash_sum(:,i);
 end
-space_uv_dash_mean = space_uv_dash_sum/m;
+space_uv_dash_mean = space_uv_dash_sum / m;
 
 %レイノルズせん断応力 τ=-ρ*space_uv_dash_meanを算出する
 re_stress = -(ro*10^-9)*space_uv_dash_mean;
-% re_stress = -(ro*10^-9)*space_uv_dash_mean;
 
-A = y(1,1:n,2)/h;
+A = y(1,1:n,2) / h;
 B = re_stress;
 % B = -space_uv_dash_mean/(U_b^2);
- figure;plot(A,B(:));
-
+figure;plot(A,B);
+scatter(A,B);
  
