@@ -1,3 +1,4 @@
+% 速度uの時空間平均
 time_u_sum = 0;
 for i=1:num_data
 %     time_u_sum = time_u_sum+fixed_velocity_data{1,i}(:,1);
@@ -15,9 +16,9 @@ end
 % fixed_time_u_mean = reshape(time_u_mean,[m,n]);
 % fixed_coord_y = reshape(coord.data(:,2),[m,n]);
 % 
-time_space_sum = 0;
- for i=1:m
-     time_space_sum = time_space_sum + exact_time_u_mean(:,i);
- end 
- time_space_mean = time_space_sum/m;
+u_time_space_sum = 0;
+for i=1:m
+    u_time_space_sum = u_time_space_sum + exact_time_u_mean(:,i);
+end 
+u_time_space_sum = u_time_space_sum/m;
 

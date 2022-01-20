@@ -1,3 +1,5 @@
+
+
 u_dash_squre = u_dash.* u_dash;
 u_dash_squre_sum = 0;
 
