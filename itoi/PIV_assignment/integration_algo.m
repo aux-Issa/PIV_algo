@@ -56,21 +56,26 @@ raw_time_u_mean = time_u_sum / num_data;
 time_u_mean = zeros(n,m);
 initialIndex = 1;
 for i=1:n
- time_u_mean(i , :) = raw_time_u_mean(initialIndex : (initialIndex + m - 1) , 1);
- initialIndex = initialIndex + m;
+    time_u_mean(i , :) = raw_time_u_mean(initialIndex : (initialIndex + m - 1) , 1);
+    initialIndex = initialIndex + m;
 end    
+time_u_mean
+disp("time_u_mean: uの時間平均")
 
+% 速度uの時空間平均
 u_time_space_sum = 0;
 for i=1:m
     u_time_space_sum = u_time_space_sum + time_u_mean(:,i);
 end 
-u_time_space_sum = u_time_space_sum/m;
+u_time_space_sum = u_time_space_sum / m;
+u_time_space_sum
+disp("u_time_space_sum：uの時空間平均")
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-B = u_time_space_sum/U_b;
+% 速度分布をグラフ出力
 A = y(1,1:n,2)/h;
+B = u_time_space_sum/U_b;
 figure;plot(A,B);
 scatter(A,B);
 title('velocity distribution of mean mainstream direction')
