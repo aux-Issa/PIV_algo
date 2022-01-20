@@ -2,6 +2,8 @@ close all;                          % close all figures
 clear;                              % clear all variables
 clc;                                % clear the command terminal
 tic;
+
+% variables
 m        = 63;                      % number of y direction
 n        = 53;                      % number of y direction
 num_data = 100;                     % number of velocity-files
@@ -14,15 +16,16 @@ path_of_coordinate=('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest
 coord = importdata(path_of_coordinate);
 xy = coord.data; % separating text and data in struct
 xy = xy-xy(1,:); % set x1 to zero
-x(:,:,1) = flip(col2im(xy(:,1),[m n],[m n],'distinct'),2); % x data [mm] with flip
-x(:,:,2) = col2im(xy(:,2),[m n],[m n],'distinct'); % y data [mm]
+y(:,:,1) = flip(col2im(xy(:,1),[m n],[m n],'distinct'),2); % x data [mm] with flip
+y(:,:,2) = col2im(xy(:,2),[m n],[m n],'distinct'); % y data [mm]
 
 % x座標
-x = x/1000; 
+y = y/1000; 
 % y座標
-x = y/1000;  
+y = y/1000;  
 
-velocity_data=cell(1,num_data);
+% velocity_data: 速度データを一つのファイルに格納
+velocity_data = cell(1,num_data);
 for j = 0:num_data-1
    if j<10
        file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.00000%d.dat',j);
@@ -38,7 +41,7 @@ for i = 1:num_data
     velocity_data{1,i}(:,1) = rmmissing(raw_velocity_data{1,i}(:,1));
     velocity_data{1,i}(:,2) = rmmissing(raw_velocity_data{1,i}(:,2));
 end
-
+disp(velocity_data)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 速度uの時空間平均
@@ -48,13 +51,12 @@ for i=1:num_data
 time_u_sum = time_u_sum+velocity_data{1,i}(:,1);
 end    
 time_u_mean=time_u_sum/num_data;
-% OK
+
 exact_time_u_mean = zeros(n,m);
 initialIndex = 1;
 for i=1:n
  exact_time_u_mean(i , :) = time_u_mean(initialIndex : (initialIndex + m - 1) , 1);
  initialIndex = initialIndex + m;
- initialIndex
 end    
 % fixed_time_u_mean = reshape(time_u_mean,[m,n]);
 % fixed_coord_y = reshape(coord.data(:,2),[m,n]);
@@ -69,7 +71,7 @@ u_time_space_sum = u_time_space_sum/m;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 B = u_time_space_sum/U_b;
-A = x(1,1:n,2)/h;
+A = y(1,1:n,2)/h;
 figure;plot(A,B);
 scatter(A,B);
 title('velocity distribution of mean mainstream direction')
@@ -92,7 +94,7 @@ initialIndex = 1;
 for i=1:n
  exact_time_v_mean(i , :) = time_v_mean(initialIndex : (initialIndex + m - 1) , 1);
  initialIndex = initialIndex + m;
- initialIndex
+ initialIndex;
 end    
 % fixed_time_v_mean = reshape(time_v_mean,[m,n]);
 % fixed_coord_y = reshape(coord.data(:,2),[m,n]);
@@ -104,7 +106,7 @@ end
 v_time_space_average = v_time_space_sum/n;
 
 B_v = v_time_space_average/U_b;
-A_v = x(1:m,1,1)/h;
+A_v = y(1:m,1,1)/h;
 figure;plot(A_v,B_v);
 scatter(A_v,B_v);
 title('velocity distribution of mean mainstream direction')
@@ -164,7 +166,7 @@ space_uv_dash_mean = space_uv_dash_sum/m;
 re_stress = -(ro*10^-9)*space_uv_dash_mean;
 % re_stress = -(ro*10^-9)*space_uv_dash_mean;
 
-A = x(1,1:n,2)/h;
+A = y(1,1:n,2)/h;
 B = re_stress;
 % B = -space_uv_dash_mean/(U_b^2);
  figure;plot(A,B(:));
