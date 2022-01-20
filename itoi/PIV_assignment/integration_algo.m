@@ -48,7 +48,7 @@ disp('velocity_data')
 % 速度uの時間平均
 time_u_sum = 0;
 for i=1:num_data
-    time_u_sum = time_u_sum+velocity_data{1,i}(:,1);
+    time_u_sum = time_u_sum + velocity_data{1,i}(:,1);
 end    
 raw_time_u_mean = time_u_sum / num_data;
 
@@ -86,36 +86,43 @@ disp("x方向の速度分布をグラフ出力")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% 速度vの時空間平均
+% 速度vの時間平均
 time_v_sum = 0;
-for i=1:num_data
-%     time_v_sum = time_v_sum+fixed_velocity_data{1,i}(:,1);
-time_v_sum = time_v_sum+velocity_data{1,i}(:,2);
+for i = 1:num_data
+    time_v_sum = time_v_sum + velocity_data{1,i}(:,2);
 end    
-time_v_mean=time_v_sum/num_data;
-% OK
-exact_time_v_mean = zeros(n,m);
+raw_time_v_mean = time_v_sum / num_data;
+
+% 速度vの時間平均を座標系に整形
+time_v_mean = zeros(n,m);
 initialIndex = 1;
 for i=1:n
- exact_time_v_mean(i , :) = time_v_mean(initialIndex : (initialIndex + m - 1) , 1);
+ time_v_mean(i , :) = raw_time_v_mean(initialIndex : (initialIndex + m - 1) , 1);
  initialIndex = initialIndex + m;
- initialIndex;
 end    
+time_v_mean
+disp("time_v_mean: vの時間平均")
 
+% 速度vの時空間平均
 v_time_space_sum = 0;
 for i=1:n
-    v_time_space_sum = v_time_space_sum + exact_time_v_mean(i, :);
+    v_time_space_sum = v_time_space_sum + time_v_mean(i, :);
 end 
-v_time_space_average = v_time_space_sum/n;
+v_time_space_average = v_time_space_sum / n;
+v_time_space_average
+disp("v_time_space_average：vの時空間平均")
 
-B_v = v_time_space_average/U_b;
-A_v = y(1:m,1,1)/h;
-figure;plot(A_v,B_v);
-scatter(A_v,B_v);
-title('velocity distribution of mean mainstream direction')
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 必要か不明
+% y方向の速度分布をグラフ出力
+B_v = v_time_space_average / U_b;
+A_v = y(1:m,1,1) / h;
+figure;plot(A_v, B_v);
+scatter(A_v, B_v);
+% title('velocity distribution of mean mainstream direction')
 xlabel('y/h')
 ylabel('u/U_b')
+disp("y方向の速度分布をグラフ出力")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -132,11 +139,12 @@ for i=1:num_data
         u_dash(v,i) = u_dash(v,i) + velocity_data{1,i}(v,1) - raw_time_u_mean(v,1);
     end
 end 
+
 v_dash = zeros(m*n,num_data);
 
 for i=1:num_data
     for v= 1:m*n
-        v_dash(v,i) = u_dash(v,i) + velocity_data{1,i}(v,2)-time_v_mean(v,1);
+        v_dash(v,i) = u_dash(v,i) + velocity_data{1,i}(v,2) - raw_time_v_mean(v,1);
     end
 end 
 
