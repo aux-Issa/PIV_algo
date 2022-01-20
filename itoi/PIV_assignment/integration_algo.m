@@ -67,21 +67,22 @@ u_time_space_sum = 0;
 for i=1:m
     u_time_space_sum = u_time_space_sum + time_u_mean(:,i);
 end 
-u_time_space_sum = u_time_space_sum / m;
-u_time_space_sum
-disp("u_time_space_sum：uの時空間平均")
+u_time_space_average = u_time_space_sum / m;
+u_time_space_average
+disp("u_time_space_average：uの時空間平均")
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 速度分布をグラフ出力
-A = y(1,1:n,2)/h;
-B = u_time_space_sum/U_b;
-figure;plot(A,B);
-scatter(A,B);
+% x方向の速度分布をグラフ出力
+normalized_y_coordinate = y(1,1:n,2) / h;
+normalized_u_time_space_average = u_time_space_sum / U_b;
+figure;plot(normalized_y_coordinate, normalized_u_time_space_average);
+scatter(normalized_y_coordinate, normalized_u_time_space_average);
 title('velocity distribution of mean mainstream direction')
 
 xlabel('y/h')
 ylabel('u/U_b')
+disp("x方向の速度分布をグラフ出力")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,9 +101,7 @@ for i=1:n
  initialIndex = initialIndex + m;
  initialIndex;
 end    
-% fixed_time_v_mean = reshape(time_v_mean,[m,n]);
-% fixed_coord_y = reshape(coord.data(:,2),[m,n]);
-% 
+
 v_time_space_sum = 0;
 for i=1:n
     v_time_space_sum = v_time_space_sum + exact_time_v_mean(i, :);
