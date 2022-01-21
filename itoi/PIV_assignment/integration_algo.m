@@ -4,15 +4,18 @@ clc;                                % clear the command terminal
 tic;
 
 % variables
-m        = 63;                      % number of y direction
-n        = 53;                      % number of y direction
+% m        = 63;                      % number of y direction
+% n        = 53;                      % number of y direction
+m        = 127;                      % number of y direction
+n        = 108;                      % number of y direction
 num_data = 100;                     % number of velocity-files
 
 ro = 997.05;                        %   density
 h = 0.02;                           %   half chanel width[m]
 U_b = 0.335;                        %   Bulk velocity[m/s]
 
-path_of_coordinate=('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/coordinate/coordinate.6v7z8lhi.000000.dat');
+% path_of_coordinate=('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/coordinate/coordinate.6v7z8lhi.000000.dat');
+path_of_coordinate=('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/coordinate_32px/coordinate_Re15000_32px.6v9d7ulj.000000.dat');
 coord = importdata(path_of_coordinate);
 xy = coord.data; % separating text and data in struct
 xy = xy-xy(1,:); % set x1 to zero
@@ -23,19 +26,31 @@ y(:,:,2) = col2im(xy(:,2),[m n],[m n],'distinct'); % y data [mm]
 y = y/1000; 
 % y座標
 y = y/1000;  
-
 % velocity_data: 速度データを一つのファイルに格納
 velocity_data = cell(1,num_data);
+% 32px
 for j = 0:num_data-1
    if j<10
-       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.00000%d.dat',j);
+       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity_32px/velocity_Re15000_32px.6v9d7ulj.00000%d.dat',j);
    elseif j<100
-       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.0000%d.dat',j);
+       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity_32px/velocity_Re15000_32px.6v9d7ulj.0000%d.dat',j);
    elseif j<1000
-       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.000%d.dat',j);
+       file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity_32px/velocity_Re15000_32px.6v9d7ulj.000%d.dat',j);
    end      
    raw_velocity_data{1,j+1} = readmatrix(file_name);
 end
+
+% 64px
+% for j = 0:num_data-1
+%    if j<10
+%        file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.00000%d.dat',j);
+%    elseif j<100
+%        file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.0000%d.dat',j);
+%    elseif j<1000
+%        file_name = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/preTest_Re15000.6v7z21dj/analyzed_data/velocity/velocity_Re15000.6v7z8lhi.000%d.dat',j);
+%    end      
+%    raw_velocity_data{1,j+1} = readmatrix(file_name);
+% end
 
 for i = 1:num_data
     velocity_data{1,i}(:,1) = rmmissing(raw_velocity_data{1,i}(:,1));
