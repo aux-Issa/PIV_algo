@@ -21,7 +21,7 @@ uu       = zeros(n,m,3);            % matlix for velocity fluctuation
 %  input vec. 
 %                  wall
 %                   m
-%              |---------|
+%              |---------|ch
 %             n|  Flow�� |
 %           ��y|---------|
 %             o �� x  
