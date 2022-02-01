@@ -28,12 +28,14 @@ ycross1 = logspace(-1,3);
 ucross1 = ycross1;
 ucross2 = log(ycross1) / kappa + B
 
+
+semilogx(ycross1,ucross2,':');
 hold on
 semilogx(ycross1,ucross1,'--');
-semilogx(ycross1,ucross2,':');
 xlim([0 1000]);
 ylim([0 25]);
 legend({'present','\slU^{+}= y^{+}','\slU^{+}=1/0.4lny^{+}+5.5'},'Location','southeast')
+hold off
 
 % todo: ，摩擦レイノルズ数で出してみる→対数速分布
 % 渡辺の論文にuとv，Re応力の結果
