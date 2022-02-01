@@ -31,9 +31,13 @@ set(gca,'FontName','Times','FontSize',15)
 ycross1 = logspace(-1,3);
 ucross1 = ycross1;
 ucross2 = log(ycross1) / kappa + B;
+
+% 粘性底層をプロット
 semilogx(ycross1,ucross1,'--');
 hold on
+% 測定結果をプロット
 semilogx(ycross,ucross,'o');
+% 乱流層をプロット
 semilogx(ycross1,ucross2,':');
 xlim([0 1000]);
 ylim([0 25]);
