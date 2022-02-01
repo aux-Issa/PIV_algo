@@ -1,19 +1,22 @@
 % 対数則
 
-%壁法則（τwは適当に代入）
+%壁法則の係数(https://www.cradle.co.jp/media/column/a182)
 kappa = 0.4;
 B = 5.5;
+
+% 補正後の壁面せん断応力(差圧測定のexcelから算出)
 fixed_tauw = 0.374;
-u_tau = sqrt(fixed_tauw / ro)  %　摩擦速度
+
+% 摩擦速度
+u_tau = sqrt(fixed_tauw / ro)  
+
+% uの時空間平均を摩擦速度で無次元化
 ucross = ums(:,1) / u_tau;
-% 壁からの距離
+
+% 壁からの距離[m]
 y_coord = x(1:n,1,2);
+% 壁からの距離を無次元化
 ycross = y_coord * u_tau / vis;
-semilogx(ycross,ucross,'o');
-% ycross = ycross / 1000
-% sqrt (tau / rho): 摩擦速度
-% nu: 動粘度
-% Yadjust：壁面ゼロからの座標
 
 figure(n)
 grid on
