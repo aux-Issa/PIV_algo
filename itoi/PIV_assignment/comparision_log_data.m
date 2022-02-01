@@ -23,18 +23,19 @@ ylabel('\slU^{+}','FontName','Times','FontAngle','Italic','FontSize',20);
 xlim([1 500])
 ylim([0 25])
 set(gca,'FontName','Times','FontSize',15)
+hold on
 
 ycross1 = logspace(-1,3);
 ucross1 = ycross1;
-ucross2 = log(ycross1) / kappa + B;
+% ucross2 = log(ycross1) / kappa + B;
+ucross2 = ycross1 / kappa + B;
 
 
-hold on
 semilogx(ycross1,ucross1,'--');
 semilogx(ycross1,ucross2,':');
 hold off
 xlim([0 1000]);
-ylim([0 100]);
+ylim([0 25]);
 legend({'present','\slU^{+}= y^{+}','\slU^{+}=1/0.4lny^{+}+5.5'},'Location','southeast')
 
 % todo: ，摩擦レイノルズ数で出してみる→対数速分布
