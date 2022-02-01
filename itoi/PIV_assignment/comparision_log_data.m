@@ -5,8 +5,6 @@ kappa = 0.4;
 B = 5.5;
 fixed_tauw = 0.374;
 u_tau = sqrt(fixed_tauw / ro)  %　摩擦速度
-% ucross = U_0 * sqrt(ro / tau);
-% ucross = uus(:,1)/ut * sqrt(ro / tauw);
 ucross = ums(:,1) / u_tau;
 % 壁からの距離
 y_coord = x(1:n,1,2);
