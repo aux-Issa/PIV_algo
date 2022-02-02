@@ -5,7 +5,7 @@ kappa = 0.4;
 B = 5.5;
 
 % 補正後の壁面せん断応力(差圧測定のexcelから算出)
-fixed_tauw = 0.374;
+fixed_tauw = 0.095331852;
 
 % 摩擦速度
 u_tau = sqrt(fixed_tauw / ro)  
