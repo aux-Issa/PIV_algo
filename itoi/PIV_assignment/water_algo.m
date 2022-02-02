@@ -9,8 +9,10 @@ tic;                                % start of measuring the elapsed time
 numfiles = 500;                     % total number of file                      
 m        = 127;                      % number of x direction
 n        = 108;                      % number of y direction
-ub       = 0.335;                   % bulk velocity [m/s]
-% tauw     = 0.23;                   % wall shear stress [N/m^2]
+% 補正前の壁面せん断応力                  
+% tauw     = 0.5132;
+
+% excelから算出した補正後の壁面せん断応力                   
 tauw     = 0.374;                   % wall shear stress [N/m^2]
 ro       = 997.05;                  % density [kg/m^3]
 ut       = sqrt(tauw/ro);           % friction velocity [m/s] 

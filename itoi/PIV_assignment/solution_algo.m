@@ -11,8 +11,10 @@ tic;                                % start of measuring the elapsed time
 numfiles = 500;                     % total number of file                      
 m        = 127;                      % number of x direction
 n        = 108;                      % number of y direction
-ub       = 0.335;                   % bulk velocity [m/s]
+ub       = 0.335;                    % bulk velocity [m/s]
+% 補正前の壁面せん断応力                  
 % tauw     = 0.23;
+
 % excelから算出した補正後の壁面せん断応力
 tauw     = 0.095331852;                   % wall shear stress [N/m^2]
 ro       = 997.05;                  % density [kg/m^3]
@@ -132,7 +134,7 @@ for k =0:numfiles-1
 	elseif k<10000 
 	 file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
     end
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/aelocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
