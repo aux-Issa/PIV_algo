@@ -1,4 +1,4 @@
-% todo: 壁面せん断応力をexcelから算出する
+% todo: 粘弾性底層の範囲を調べる
 %%
 close all;                          % close all figures
 clear;                              % clear all variables
