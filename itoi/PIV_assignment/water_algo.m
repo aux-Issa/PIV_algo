@@ -9,6 +9,7 @@ tic;                                % start of measuring the elapsed time
 numfiles = 500;                     % total number of file                      
 m        = 127;                      % number of x direction
 n        = 108;                      % number of y direction
+ub       = 0.335;                   % bulk velocity [m/s]
 % 補正前の壁面せん断応力                  
 % tauw     = 0.5132;
 

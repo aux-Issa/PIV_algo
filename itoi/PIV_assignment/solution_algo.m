@@ -1,4 +1,3 @@
-% todo: 粘弾性底層の範囲を調べる
 %%
 close all;                          % close all figures
 clear;                              % clear all variables

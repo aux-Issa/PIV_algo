@@ -8,11 +8,12 @@ B = 5.5;
 fixed_tauw = 0.374;
 
 % 摩擦速度
-u_tau = sqrt(fixed_tauw / ro)  
+u_tau = sqrt(fixed_tauw / ro);
 
 % uの時空間平均を摩擦速度で無次元化
 ucross = ums(:,1) / u_tau;
-
+% 上の変数を保存
+save('session','u_tau','ucross')
 % 壁からの距離[m]
 y_coord = x(1:n,1,2);
 % 壁からの距離を無次元化

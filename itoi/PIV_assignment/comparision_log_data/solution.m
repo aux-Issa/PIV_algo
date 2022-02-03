@@ -13,13 +13,17 @@ fixed_tauw = 0.095331852;
 % 摩擦速度
 u_tau = sqrt(fixed_tauw / ro);
 
-% uの時空間平均を摩擦速度で無次元化
-ucross = ums(:,1) / u_tau;
+% 80ppmのuの時空間平均を摩擦速度で無次元化
+ucross_solution = ums(:,1) / u_tau;
+% 水の摩擦速度とucrossをsessionから読み込み
+ucross_water = load('session', 'ucross').ucross;
+u_tau_water = load('session', 'u_tau').u_tau;
 
 % 壁からの距離[m]
 y_coord = x(1:n,1,2);
 % 壁からの距離を無次元化
 ycross = y_coord * u_tau / vis;
+ycross_water = y_coord * u_tau_water / vis;
 
 figure(n)
 grid on
@@ -37,16 +41,21 @@ ucross2 = log(ycross1) * A + B;
 ucross2_solution = log(ycross1) * A_solution + B_solution;
 
 % 粘性底層をプロット
-semilogx(ycross1,ucross1,'--');
+semilogx(ycross1,ucross1,'-k');
 hold on
-% 測定結果をプロット
-semilogx(ycross,ucross,'o');
-% 乱流層をプロット
-semilogx(ycross1,ucross2,':');
-semilogx(ycross1,ucross2_solution,':');
+% 水の測定結果をプロット
+semilogx(ycross_water,ucross_water,'-ob');
+% solutionの測定結果をプロット
+semilogx(ycross,ucross_solution,'-or');
+% 水の乱流層をプロット
+semilogx(ycross1,ucross2,'-.k');
+% 粘弾性流体の乱流層をプロット
+semilogx(ycross1,ucross2_solution,':k');
 xlim([0 1000]);
 ylim([0 25]);
-legend({'\slU^{+}=2.5lny^{+}+5.5','present','\slU^{+}= y^{+}','\slU^{+}=11.7lny^{+}-17'},'Location','southeast')
+xlabel('${\it y^+}$','FontSize',20,'Interpreter','latex')
+ylabel('$\overline{\it u^{+}}$','FontSize',20,'Interpreter','latex')
+legend({'\slU^{+}= y^{+}','water','80ppm','\slU^{+}=2.5lny^{+}+5.5','\slU^{+}=11.7lny^{+}-17'},'Location','southeast')
 hold off
 
 % ✔️todo: ，摩擦レイノルズ数で出してみる→対数速分布
