@@ -8,7 +8,7 @@ newpoints = m*3;
 %              );
 %  クエリ点で内挿
 U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
-[cc_water_dash,hc_water_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ut,20);                   % making isoline
+[cc_water_dash,hc_water_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/Ub,20);                   % making isoline
 hc_water_dash.TextStep = 0.4;                                                  % interval isoline
 hc_water_dash.ShowText = 'off';                                                % isoline text off
 colormap('jet');                                                    % color type of 'jet'
