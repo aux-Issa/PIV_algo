@@ -68,10 +68,12 @@ end
 % % 2D-figure
 figure;
 newpoints = m*3;
+% クエリグリッドを作成
 [xq,yq] = meshgrid(...                                              % making fine mesh
                linspace(x(1,1,1),x(1,m,1),newpoints ),...
                linspace(x(1,1,2),x(n,1,2),newpoints )...
              );
+%  クエリ点で内挿
 Umxy = interp2(x(:,:,1),x(:,:,2),um(:,:,1),xq,yq,'spline');         % interpolation
 [cc,hc]=contourf(xq/h,yq/h,Umxy/ub,12);                             % making isoline
 %[cc,hc]=contourf(xq*ut/vis,yq*ut/vis,Umxy/ut,12);                   % making isoline
@@ -136,17 +138,18 @@ for k =0:numfiles-1
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
-
+% 変動を算出
     uf(:,:,1)  = u(:,:,1)-ums(:,1);
     uf(:,:,2)  = u(:,:,2)-ums(:,2);
     uf(:,:,3)  = -uf(:,:,1).*uf(:,:,2);
-
+% 変動の二乗平均
     uu(:,:,1)  = uu(:,:,1)+uf(:,:,1).*uf(:,:,1)/double(numfiles);
     uu(:,:,2)  = uu(:,:,2)+uf(:,:,2).*uf(:,:,2)/double(numfiles);
     uu(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
 
 end
 
+% 同行の値を平均
     uus(:,1)      = sqrt(mean(uu(:,:,1),2));
     uus(:,2)      = sqrt(mean(uu(:,:,2),2));
     uus(:,3)      = mean(uu(:,:,3),2);

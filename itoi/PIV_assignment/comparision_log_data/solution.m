@@ -4,6 +4,7 @@
 A = 2.5;
 B = 5.5;
 %最大抵抗低減における壁法則の係数(https://www.nagare.or.jp/download/noauth.html?d=37-5_kenkyu2.pdf&dir=116)
+% Virk(1975)によって示された抵抗低減漸近線(y+ > 30) P.S. Virk, "Drag reduction fundamentals", J.AICHE, 21, 625.656, 1975
 A_solution = 11.7;
 B_solution = -17;
 

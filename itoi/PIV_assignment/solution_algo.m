@@ -190,7 +190,8 @@ ax = gca;
 ax.TickLength = [0.02 0.1];
 xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
 ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
-% 
+
+% レイノルズせん断応力
 subplot(2,2,3);
 p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
 p.LineWidth = 1.2;
