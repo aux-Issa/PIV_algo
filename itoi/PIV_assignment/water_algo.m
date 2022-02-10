@@ -148,6 +148,7 @@ for k =0:numfiles-1
     uu(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
+    U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
 
 % uの変動を分布図に
     if k < 15
@@ -202,9 +203,9 @@ for k =0:numfiles-1
     end
     % レイノルズ剪断応力の瞬時場
     if k < 15
-        [cc_water_v_dash,hc_water_v_dash]=contourf(xq*ut/vis,yq*ut/vis,-ro*U_dash*V_dash,16);                   % making isoline
-        hc_water_v_dash.TextStep = 0.4;                                                  % interval isoline
-        hc_water_v_dash.ShowText = 'off';                                                % isoline text off
+        [cc_water_ReStress,hc_water_ReStress]=contourf(xq*ut/vis,yq*ut/vis,U_dash_times_V_dash/(ub*ub),16);                   % making isoline
+        hc_water_ReStress.TextStep = 0.4;                                                  % interval isoline
+        hc_water_ReStress.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
         box on;                                                             % making flame of figure
         xlim([0 150]);                                                       % range of x

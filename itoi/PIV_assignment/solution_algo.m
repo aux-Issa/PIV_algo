@@ -147,7 +147,7 @@ for k =0:numfiles-1
     uu(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
-
+    U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
     if k < 15
         [cc_solution_dash,hc_solution_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ub,8);                   % making isoline
         hc_solution_dash.TextStep = 0.4;                                                  % interval isoline
@@ -190,11 +190,36 @@ for k =0:numfiles-1
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
-        c.Label.String = '$${\it u^\prime}/{\it U_b}$$';                % label of color bar
+        c.Label.String = '$${\it v^\prime}/{\it U_b}$$';                % label of color bar
         c.Label.FontSize = 20;                                              % font size of label of color bar
-        fig_name = sprintf('U_dash_solution%d',k);
+        fig_name = sprintf('V_dash_solution%d',k);
         saveas(gcf,fig_name ,'png'); 
         
+    end  
+    % レイノルズ剪断応力の瞬時場
+    if k < 15
+        [cc_solution_ReStress,hc_solution_ReStress]=contourf(xq*ut/vis,yq*ut/vis,U_dash_times_V_dash/(ub*ub),16);                   % making isoline
+        hc_solution_ReStress.TextStep = 0.4;                                                  % interval isoline
+        hc_solution_ReStress.ShowText = 'off';                                                % isoline text off
+        colormap('jet');                                                    % color type of 'jet'
+        box on;                                                             % making flame of figure
+        xlim([0 150]);                                                       % range of x
+        ylim([0 60]);                                                     % range of y
+        set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
+        ax = gca;
+        ax.TickLength = [0.02 0.1];                                         % scale size to inside from flame
+        xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
+        ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
+        c = colorbar;                                                       % making color bar
+        c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.FontSize = 18;                                                    % font size of scale of color bar
+        c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
+        c.Label.Interpreter = 'latex';                                      % font type of label of color bar
+        c.Label.String = '$${\it Re_stress}$$';                % label of color bar
+        c.Label.FontSize = 20;                                              % font size of label of color bar
+        fig_name = sprintf('Re_stress%d',k);
+        saveas(gcf,fig_name ,'png'); 
+        % saveas(gcf,'fig' ,'png'); 
     end  
 end
 
