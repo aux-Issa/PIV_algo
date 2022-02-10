@@ -74,7 +74,7 @@ newpoints = m*3;
                linspace(x(1,1,2),x(n,1,2),newpoints )...
              );
 Umxy = interp2(x(:,:,1),x(:,:,2),um(:,:,1),xq,yq,'spline');         % interpolation
-[cc,hc]=contourf(xq/h,yq/h,Umxy/ub,12);                             % making isoline
+[cc,hc]=contourf(xq/h,yq/h,Umxy/ub,8);                             % making isoline
 %[cc,hc]=contourf(xq*ut/vis,yq*ut/vis,Umxy/ut,12);                   % making isoline
 hc.TextStep = 0.4;                                                  % interval isoline
 hc.ShowText = 'off';                                                % isoline text off
@@ -167,7 +167,7 @@ for k =0:numfiles-1
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
         c.Label.String = '$${\it u^\prime}/{\it U_b}$$';                % label of color bar
         c.Label.FontSize = 20;                                              % font size of label of color bar
-        fig_name = sprintf('U_dash_water%d',k);
+        fig_name = sprintf('U_dash_solution%d',k);
         saveas(gcf,fig_name ,'png'); 
         
     end  
