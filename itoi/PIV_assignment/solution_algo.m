@@ -211,7 +211,7 @@ for k =0:numfiles-1
         xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
         c = colorbar;                                                       % making color bar
-        c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.Limits = [-0.05 0.05];                                                 % range of colorbar
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
