@@ -148,8 +148,8 @@ for k =0:numfiles-1
     uu(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
 
-    if k == 5 | k == 10 | k == 20 | k == 40 | k == 60 | k == 80 | k == 160 | k == 320 | k == 500
-        [cc_water_dash,hc_water_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ub,12);                   % making isoline
+    % if k == 5 | k == 10 | k == 20 | k == 40 | k == 60 | k == 80 | k == 160 | k == 320 | k == 500
+        [cc_water_dash,hc_water_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ub,20);                   % making isoline
         hc_water_dash.TextStep = 0.4;                                                  % interval isoline
         hc_water_dash.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
@@ -171,7 +171,7 @@ for k =0:numfiles-1
         fig_name = sprintf('U_dash_water%d',k);
         saveas(gcf,fig_name ,'png'); 
         
-    end        
+    % end        
 end
 
 % 同行の値を平均
