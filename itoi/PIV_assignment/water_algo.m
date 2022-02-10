@@ -202,7 +202,7 @@ for k =0:numfiles-1
     end
     % レイノルズ剪断応力の瞬時場
     if k < 15
-        [cc_water_v_dash,hc_water_v_dash]=contourf(xq*ut/vis,yq*ut/vis,V_dash/ub,16);                   % making isoline
+        [cc_water_v_dash,hc_water_v_dash]=contourf(xq*ut/vis,yq*ut/vis,-ro*U_dash*V_dash,16);                   % making isoline
         hc_water_v_dash.TextStep = 0.4;                                                  % interval isoline
         hc_water_v_dash.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
@@ -219,9 +219,9 @@ for k =0:numfiles-1
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
-        c.Label.String = '$${\it v^\prime}/{\it U_b}$$';                % label of color bar
+        c.Label.String = '$${\it Re_stress}$$';                % label of color bar
         c.Label.FontSize = 20;                                              % font size of label of color bar
-        fig_name = sprintf('V_dash_water%d',k);
+        fig_name = sprintf('Re_stress%d',k);
         saveas(gcf,fig_name ,'png'); 
         % saveas(gcf,'fig' ,'png'); 
     end          
