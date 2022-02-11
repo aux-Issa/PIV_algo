@@ -157,7 +157,7 @@ for k =0:numfiles-1
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
     U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
-    
+
     % if k < 15
     %     [cc_solution_dash,hc_solution_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ub,8);                   % making isoline
     %     hc_solution_dash.TextStep = 0.4;                                                  % interval isoline
@@ -245,8 +245,8 @@ for k =0:numfiles-1
         ycross = x(1:n,1,2) * ut / vis;
         sigma(:,:,1)      = sqrt(uu(:,:,1));
         sigma(:,:,2)      = sqrt(uu(:,:,2));
-        skewness_u = (uu_Skewness(:,:,1)./(sigma(:,:,1).^3))./ut;
-        skewness_v = (uu_Skewness(:,:,2)./(sigma(:,:,2).^3))./ut;
+        skewness_u = (uu_Skewness(:,:,1)./(sigma(:,:,1).^3));
+        skewness_v = (uu_Skewness(:,:,2)./(sigma(:,:,2).^3));
         % skewness_uの第二引数はどのx座標を観察したいかによって適宜変える
         semilogx(ycross,skewness_u(:,1),'--');
         % ylim([0 60])
@@ -266,8 +266,8 @@ for k =0:numfiles-1
     %     ycross = x(1:n,1,2) * ut / vis;
     %     sigma(:,:,1)      = sqrt(uu(:,:,1));
     %     sigma(:,:,2)      = sqrt(uu(:,:,2));
-    %     flatness_u = (uu_Flatness(:,:,1)./(sigma(:,:,1).^4))./ut;
-    %     flatness_v = (uu_Flatness(:,:,2)./(sigma(:,:,2).^4))./ut;
+    %     flatness_u = (uu_Flatness(:,:,1)./(sigma(:,:,1).^4));
+    %     flatness_v = (uu_Flatness(:,:,2)./(sigma(:,:,2).^4));
 
     %     % skewness_uの第二引数はどのx座標を観察したいかによって適宜変える
     %     semilogx(ycross,flatness_u(:,1),'o');
