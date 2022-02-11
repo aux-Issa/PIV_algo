@@ -137,14 +137,23 @@ for k =0:numfiles-1
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
-
+    % 変動を算出
     uf(:,:,1)  = u(:,:,1)-ums(:,1);
     uf(:,:,2)  = u(:,:,2)-ums(:,2);
     uf(:,:,3)  = -uf(:,:,1).*uf(:,:,2);
-
+    % 変動の二乗平均
     uu(:,:,1)  = uu(:,:,1)+uf(:,:,1).*uf(:,:,1)/double(numfiles);
     uu(:,:,2)  = uu(:,:,2)+uf(:,:,2).*uf(:,:,2)/double(numfiles);
     uu(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
+    % 変動の三乗平均(skewness)
+    base = zeros(n,m,3);
+    uu_Skewness(:,:,1)  = base(:,:,1)+uf(:,:,1).*uf(:,:,1).*uf(:,:,1)/double(numfiles);
+    uu_Skewness(:,:,2)  = base(:,:,2)+uf(:,:,2).*uf(:,:,2).*uf(:,:,2)/double(numfiles);
+
+    % 変動の四乗平均(flatness)
+    uu_Flatness(:,:,1)  = base(:,:,1)+uf(:,:,1).*uf(:,:,1).*uf(:,:,1).*uf(:,:,2)/double(numfiles);
+    uu_Flatness(:,:,2)  = base(:,:,2)+uf(:,:,2).*uf(:,:,2).*uf(:,:,2).*uf(:,:,2)/double(numfiles);
+    % uu_Skewness(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
     U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
