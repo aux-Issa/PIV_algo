@@ -158,6 +158,8 @@ for k =0:numfiles-1
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
     U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
 
+% uの変動を分布図に
+
     % if k < 15
     if k == 6 || k == 8|| k == 14
         [cc_solution_dash,hc_solution_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ut,8);                   % making isoline
@@ -173,11 +175,13 @@ for k =0:numfiles-1
         xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
         c = colorbar;                                                       % making color bar
-        c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        % c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.Limits = [-6 4];                                                 % range of colorbar
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
-        c.Label.String = '$${\it u^\prime}/{\it U_b}$$';                % label of color bar
+        % c.Label.String = '$${\it u^\prime}/{\it U_b}$$';                % label of color bar
+        c.Label.String = '$${\it u^\prime}^+$$';                             % label of color bar
         c.Label.FontSize = 20;                                              % font size of label of color bar
         fig_name = sprintf('U_dash_solution%d',k);
         saveas(gcf,fig_name ,'png'); 
@@ -198,11 +202,13 @@ for k =0:numfiles-1
         xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
         c = colorbar;                                                       % making color bar
-        c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        % c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.Limits = [-3 3];
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
-        c.Label.String = '$${\it v^\prime}/{\it U_b}$$';                % label of color bar
+        % c.Label.String = '$${\it v^\prime}/{\it U_b}$$';                % label of color bar
+        c.Label.String = '$${\it u^\prime}^+$$';                             % label of color bar
         c.Label.FontSize = 20;                                              % font size of label of color bar
         fig_name = sprintf('V_dash_solution%d',k);
         saveas(gcf,fig_name ,'png'); 
@@ -224,7 +230,8 @@ for k =0:numfiles-1
         xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
         c = colorbar;                                                       % making color bar
-        c.Limits = [-0.05 0.05];                                                 % range of colorbar
+        % c.Limits = [-0.05 0.05];                                                 % range of colorbar
+        c.Limits = [-5 15];
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar
