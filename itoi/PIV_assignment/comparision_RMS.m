@@ -21,17 +21,17 @@ solution_v_RMS_plot_Yaxis = load('session_solutionRMS', 'solution_v_RMS_plot_Yax
 % legend({'water','80ppm'},'Location','northeast')
 % hold off 
 
-% p_v_water = plot(water_plot_Xaxis,water_v_RMS_plot_Yaxis,'b^');
-% p_v_water.LineWidth = 1.2;
-% p_v_water.MarkerSize = 7;
-% p_v_water.MarkerFaceColor = 'blue';
-% box on;
-% xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
-% ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
-% xlim([0 60]); 
-% hold on
-% p_v_solution = plot(solution_plot_Xaxis,solution_v_RMS_plot_Yaxis,'r^');
-% p_v_solution.MarkerEdgeColor = 'red';
-% p_v_solution.MarkerFaceColor = 'red';
-% legend({'water','80ppm'},'Location','northeast')
-% hold off 
+p_v_water = plot(water_plot_Xaxis,water_v_RMS_plot_Yaxis,'b^');
+p_v_water.LineWidth = 1.2;
+p_v_water.MarkerSize = 7;
+p_v_water.MarkerFaceColor = 'blue';
+box on;
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
+ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
+xlim([0 60]); 
+hold on
+p_v_solution = plot(solution_plot_Xaxis,solution_v_RMS_plot_Yaxis,'r^');
+p_v_solution.MarkerEdgeColor = 'red';
+p_v_solution.MarkerFaceColor = 'red';
+legend({'water','80ppm'},'Location','northeast')
+hold off 

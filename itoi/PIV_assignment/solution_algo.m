@@ -345,6 +345,7 @@ ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 
 % レイノルズせん断応力
 subplot(2,2,3);
+save('solution_Normalized_Re_stress','water_Normalized_Re_stress')
 p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;

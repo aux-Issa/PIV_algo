@@ -350,23 +350,29 @@ xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,3);
-p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
+water_Normalized_Re_stress = uus(:,3)/(ut*ut)
+save('water_Normalized_Re_stress','water_Normalized_Re_stress')
+% p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,3)/(ut*ut),'k>');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
 p.MarkerFaceColor = [0.5 0.5 1];
 box on;
 %axis equal tight;                                                 
-xticks([0:0.2:1]);
-yticks([-1:0.5:1.0]);
-xlim([0 1]);
-ylim([0 1]);
+% xticks([0:0.2:1]);
+% yticks([-1:0.5:1.0]);
+% xlim([0 1]);
+% ylim([0 1]);
+xlim([0 60]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$$-\overline{{\it u^\prime}^+{\it v^\prime}^+}$$','FontSize',20,'Interpreter','latex');
-% 
+%
+ 
 subplot(2,2,4);
 p = plot(x(1:n-1,1,2)/h,euv(:,1)/vis,'ko');
 p.LineWidth = 1.2;
