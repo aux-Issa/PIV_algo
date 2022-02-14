@@ -296,39 +296,46 @@ end
 % 1D-figure
 figure;
 subplot(2,2,1);
-p = plot(x(1:n,1,2)/h,uus(:,1)/ut,'ko');
+% p = plot(x(1:n,1,2)/h,uus(:,1)/ut,'ko');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,1)/ut,'ko');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
 p.MarkerFaceColor = [0.1 1 1];
 box on;
 %axis equal tight;                                                 
-xticks([0:0.2:1]);
-yticks([0:0.5:2.5]);
-xlim([0 1]);
-ylim([0 2.5]);
+% xticks([0:0.2:1]);
+% yticks([0:0.5:2.5]);
+% xlim([0 1]);
+xlim([0 60]); 
+% ylim([0 2.5]);
+ylim([0 5.0]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$${\it u^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,2);
-p = plot(x(1:n,1,2)/h,uus(:,2)/ut,'k^');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,2)/ut,'k^');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
 p.MarkerFaceColor = [1 0.2 1];
 box on;
 %axis equal tight;                                                 
-xticks([0:0.2:1]);
-yticks([0:0.5:1.5]);
-xlim([0 1]);
-ylim([0 1.5]);
+% xticks([0:0.2:1]);
+% yticks([0:0.5:1.5]);
+% xlim([0 1]);
+% ylim([0 1.5]);
+xlim([0 60]); 
+ylim([0 5.0]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 
 % レイノルズせん断応力
