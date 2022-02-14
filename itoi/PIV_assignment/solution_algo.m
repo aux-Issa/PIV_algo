@@ -321,6 +321,7 @@ subplot(2,2,2);
 solution_plot_Xaxis = x(1:n,1,2)*ut/vis
 solution_u_RMS_plot_Yaxis = uus(:,1)/ut
 solution_v_RMS_plot_Yaxis = uus(:,2)/ut
+% RMSのグラフ作成に必要な変数を保存
 save('session_solutionRMS','solution_plot_Xaxis','solution_u_RMS_plot_Yaxis', 'solution_v_RMS_plot_Yaxis')
 p = plot(x(1:n,1,2)*ut/vis,uus(:,2)/ut,'k^');
 p.LineWidth = 1.2;
