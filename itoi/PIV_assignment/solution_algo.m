@@ -345,8 +345,10 @@ ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 
 % レイノルズせん断応力
 subplot(2,2,3);
-save('solution_Normalized_Re_stress','water_Normalized_Re_stress')
-p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
+solution_Normalized_Re_stress = uus(:,3)/(ut*ut)
+save('solution_Normalized_Re_stress','solution_Normalized_Re_stress')
+% p = plot(x(1:n,1,2)/h,uus(:,3)/(ut*ut),'k>');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,3)/(ut*ut),'k>');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
@@ -360,7 +362,8 @@ ylim([0 1]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$$-\overline{{\it u^\prime}^+{\it v^\prime}^+}$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,4);
