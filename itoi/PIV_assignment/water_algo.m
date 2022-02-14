@@ -324,6 +324,11 @@ ylabel('$${\it u^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,2);
 % p = plot(x(1:n,1,2)/h,uus(:,2)/ut,'k^');
+
+water_plot_Xaxis = x(1:n,1,2)*ut/vis
+water_u_RMS_plot_Yaxis = uus(:,1)/ut
+water_v_RMS_plot_Yaxis = uus(:,2)/ut
+save('session_waterRMS','water_plot_Xaxis','water_u_RMS_plot_Yaxis', 'water_v_RMS_plot_Yaxis')
 p = plot(x(1:n,1,2)*ut/vis,uus(:,2)/ut,'k^');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
