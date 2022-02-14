@@ -221,31 +221,31 @@ for k =0:numfiles-1
     % end
     % レイノルズ剪断応力の瞬時場
     % if k < 15
-    if k == 6 || k == 8|| k == 14
-        [cc_water_ReStress,hc_water_ReStress]=contourf(xq*ut/vis,yq*ut/vis,U_dash_times_V_dash/(ut*ut),16);                   % making isoline
-        hc_water_ReStress.TextStep = 0.4;                                                  % interval isoline
-        hc_water_ReStress.ShowText = 'off';                                                % isoline text off
-        colormap('jet');                                                    % color type of 'jet'
-        box on;                                                             % making flame of figure
-        xlim([0 150]);                                                       % range of x
-        ylim([0 60]);                                                     % range of y
-        set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
-        ax = gca;
-        ax.TickLength = [0.02 0.1];                                         % scale size to inside from flame
-        xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
-        ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
-        c = colorbar;                                                       % making color bar
-        % c.Limits = [-0.4 0.4];                                                 % range of colorbar
-        c.Limits = [-5 15];                                                 % range of colorbar
-        c.FontSize = 18;                                                    % font size of scale of color bar
-        c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
-        c.Label.Interpreter = 'latex';                                      % font type of label of color bar
-        c.Label.String = '$$-\overline{{\it u^\prime}^+{\it v^\prime}^+}$$';                % label of color bar
-        c.Label.FontSize = 20;                                              % font size of label of color bar
-        fig_name = sprintf('Re_stress%d',k);
-        saveas(gcf,fig_name ,'png'); 
-        % saveas(gcf,'fig' ,'png'); 
-    end      
+    % if k == 6 || k == 8|| k == 14
+    %     [cc_water_ReStress,hc_water_ReStress]=contourf(xq*ut/vis,yq*ut/vis,U_dash_times_V_dash/(ut*ut),16);                   % making isoline
+    %     hc_water_ReStress.TextStep = 0.4;                                                  % interval isoline
+    %     hc_water_ReStress.ShowText = 'off';                                                % isoline text off
+    %     colormap('jet');                                                    % color type of 'jet'
+    %     box on;                                                             % making flame of figure
+    %     xlim([0 150]);                                                       % range of x
+    %     ylim([0 60]);                                                     % range of y
+    %     set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
+    %     ax = gca;
+    %     ax.TickLength = [0.02 0.1];                                         % scale size to inside from flame
+    %     xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
+    %     ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
+    %     c = colorbar;                                                       % making color bar
+    %     % c.Limits = [-0.4 0.4];                                                 % range of colorbar
+    %     c.Limits = [-5 15];                                                 % range of colorbar
+    %     c.FontSize = 18;                                                    % font size of scale of color bar
+    %     c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
+    %     c.Label.Interpreter = 'latex';                                      % font type of label of color bar
+    %     c.Label.String = '$$-\overline{{\it u^\prime}^+{\it v^\prime}^+}$$';                % label of color bar
+    %     c.Label.FontSize = 20;                                              % font size of label of color bar
+    %     fig_name = sprintf('Re_stress%d',k);
+    %     saveas(gcf,fig_name ,'png'); 
+    %     % saveas(gcf,'fig' ,'png'); 
+    % end      
 
     % % skewness(歪度)を算出
     % if k == 6 || k == 7 || k == 8|| k == 14
@@ -301,39 +301,45 @@ end
 % 1D-figure
 figure;
 subplot(2,2,1);
-p = plot(x(1:n,1,2)/h,uus(:,1)/ut,'ko');
+% p = plot(x(1:n,1,2)/h,uus(:,1)/ut,'ko');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,1)/ut,'ko');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
 p.MarkerFaceColor = [0.1 1 1];
 box on;
 %axis equal tight;                                                 
-xticks([0:0.2:1]);
-yticks([0:0.5:2.5]);
-xlim([0 1]);
-ylim([0 2.5]);
+% xticks([0:0.2:1]);
+% yticks([0:0.5:2.5]);
+% xlim([0 1]);
+xlim([0 60]); 
+% ylim([0 2.5]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$${\it u^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,2);
-p = plot(x(1:n,1,2)/h,uus(:,2)/ut,'k^');
+% p = plot(x(1:n,1,2)/h,uus(:,2)/ut,'k^');
+p = plot(x(1:n,1,2)*ut/vis,uus(:,2)/ut,'k^');
 p.LineWidth = 1.2;
 p.MarkerSize = 7;
 p.MarkerEdgeColor = 'black';
 p.MarkerFaceColor = [1 0.2 1];
 box on;
 %axis equal tight;                                                 
-xticks([0:0.2:1]);
-yticks([0:0.5:1.5]);
-xlim([0 1]);
-ylim([0 1.5]);
+% xticks([0:0.2:1]);
+% yticks([0:0.5:1.5]);
+% xlim([0 1]);
+xlim([0 60]); 
+% ylim([0 1.5]);
 set( gca, 'FontName','Times','FontSize',18); 
 ax = gca;
 ax.TickLength = [0.02 0.1];
-xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+% xlabel('{\it y}/{\it h}','FontSize',20,'Interpreter','latex');
+xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
 ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
 % 
 subplot(2,2,3);
