@@ -5,18 +5,33 @@ solution_plot_Xaxis = load('session_solutionRMS', 'solution_plot_Xaxis').solutio
 solution_u_RMS_plot_Yaxis = load('session_solutionRMS', 'solution_u_RMS_plot_Yaxis').solution_u_RMS_plot_Yaxis;
 solution_v_RMS_plot_Yaxis = load('session_solutionRMS', 'solution_v_RMS_plot_Yaxis').solution_v_RMS_plot_Yaxis;
 
-p_u_water = plot(water_plot_Xaxis,water_u_RMS_plot_Yaxis,'b^');
-p_u_water.LineWidth = 1.2;
-p_u_water.MarkerSize = 7;
-% p_u_water.MarkerEdgeColor = 'blue';
-p_u_water.MarkerFaceColor = 'blue';
-box on;
-xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
-ylabel('$${\it u^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
-xlim([0 60]); 
-hold on
-p_u_solution = plot(solution_plot_Xaxis,solution_u_RMS_plot_Yaxis,'r^');
-p_u_solution.MarkerEdgeColor = 'red';
-p_u_solution.MarkerFaceColor = 'red';
-legend({'water','80ppm'},'Location','northeast')
-hold off 
+% p_u_water = plot(water_plot_Xaxis,water_u_RMS_plot_Yaxis,'b^');
+% p_u_water.LineWidth = 1.2;
+% p_u_water.MarkerSize = 7;
+% % p_u_water.MarkerEdgeColor = 'blue';
+% p_u_water.MarkerFaceColor = 'blue';
+% box on;
+% xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
+% ylabel('$${\it u^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
+% xlim([0 60]); 
+% hold on
+% p_u_solution = plot(solution_plot_Xaxis,solution_u_RMS_plot_Yaxis,'r^');
+% p_u_solution.MarkerEdgeColor = 'red';
+% p_u_solution.MarkerFaceColor = 'red';
+% legend({'water','80ppm'},'Location','northeast')
+% hold off 
+
+% p_v_water = plot(water_plot_Xaxis,water_v_RMS_plot_Yaxis,'b^');
+% p_v_water.LineWidth = 1.2;
+% p_v_water.MarkerSize = 7;
+% p_v_water.MarkerFaceColor = 'blue';
+% box on;
+% xlabel('$${\it y^+}$$','FontSize',20,'Interpreter','latex');
+% ylabel('$${\it v^\prime}_{{\rm rms}}^+$$','FontSize',20,'Interpreter','latex');
+% xlim([0 60]); 
+% hold on
+% p_v_solution = plot(solution_plot_Xaxis,solution_v_RMS_plot_Yaxis,'r^');
+% p_v_solution.MarkerEdgeColor = 'red';
+% p_v_solution.MarkerFaceColor = 'red';
+% legend({'water','80ppm'},'Location','northeast')
+% hold off 
