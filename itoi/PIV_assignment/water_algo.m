@@ -16,7 +16,7 @@ ub       = 0.335;                   % bulk velocity [m/s]
 % excelから算出した補正後の壁面せん断応力                   
 tauw     = 0.374;                   % wall shear stress [N/m^2]
 ro       = 997.05;                  % density [kg/m^3]
-ut       = sqrt(tauw/ro);           % friction velocity [m/s] 0.019367668
+ut       = sqrt(tauw/ro);           % friction velocity [m/s] 水0.019367668
 vis      = 0.000000893;             % kinetic viscosity [m^2/s]
 h        = 0.02;                    % chanel half height [m]
 um       = zeros(n,m,2);            % matlix for velocity 
