@@ -45,20 +45,20 @@ x          = x/1000;                                               % xy data [mm
 % reading part_velocity_data_average
 for k =0:numfiles-1
 	if k<10                                                        % changing file name to read data
-    %  file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
+     file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
 	elseif k<100
-	%  file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
 	elseif k<1000
-	%  file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
 	elseif k<10000 
-	%  file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
     end
-    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0217fixed_velocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
+    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0217fixed_velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
@@ -130,20 +130,20 @@ saveas(gcf,'Um-y','png');
 % reading part_velocity_data_fluctuation
 for k =0:numfiles-1
 	if k<10                                                         % changing file name to read data
-	%  file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
 	elseif k<100
-	%  file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
 	elseif k<1000
-	%  file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
 	elseif k<10000 
-	%  file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
-	 file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
+	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
     end
-    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0217fixed_velocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
+    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0217fixed_velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
@@ -170,15 +170,15 @@ for k =0:numfiles-1
 
 % uの変動を分布図に
 
-    % if k < 15
-    if k == 6 || k == 8|| k == 14
+    % if k == 6 || k == 8|| k == 14
+    if k == 6
         [cc_solution_dash,hc_solution_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ut,8);                   % making isoline
         hc_solution_dash.TextStep = 0.4;                                                  % interval isoline
         hc_solution_dash.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
         box on;                                                             % making flame of figure
         xlim([0 150]);                                                       % range of x
-        ylim([0 60]);                                                     % range of y
+        ylim([10 100]);                                                     % range of y
         set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
         ax = gca;
         ax.TickLength = [0.02 0.1];                                         % scale size to inside from flame
@@ -186,14 +186,14 @@ for k =0:numfiles-1
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
 
         c = load('session_C','c').c;                                                       % making color bar
-        % % c.Limits = [-0.4 0.4];                                                 % range of colorbar
-        % c.Limits = [-6 4];                                                 % range of colorbar
-        % c.FontSize = 18;                                                    % font size of scale of color bar
-        % c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
-        % c.Label.Interpreter = 'latex';                                      % font type of label of color bar
+        % c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.Limits = [-4 4];                                                 % range of colorbar
+        c.FontSize = 18;                                                    % font size of scale of color bar
+        c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
+        c.Label.Interpreter = 'latex';                                      % font type of label of color bar
         % % c.Label.String = '$${\it u^\prime}/{\it U_b}$$';                % label of color bar
-        % c.Label.String = '$${\it u^\prime}^+$$';                             % label of color bar
-        % c.Label.FontSize = 20;                                              % font size of label of color bar
+        c.Label.String = '$${\it u^\prime}^+$$';                             % label of color bar
+        c.Label.FontSize = 20;                                              % font size of label of color bar
         fig_name = sprintf('U_dash_solution%d',k);
         saveas(gcf,fig_name ,'png'); 
         

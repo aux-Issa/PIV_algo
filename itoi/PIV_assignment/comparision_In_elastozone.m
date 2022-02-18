@@ -14,7 +14,7 @@ u_RMS_DNS = DNSdata(:,4).^(1/2);
 v_RMS_DNS = DNSdata(:,5).^(1/2);
 
 % DNS_lowRe_file_name = sprintf('/Users/issa/Desktop/DNS_Re.csv');
-% DNS_lowRe_data = csvread(DNS_lowRe_file_name, 1, 0);
+% DNS_lowRe_data = csvread(DNS_lowRe_file_name);
 % y_cross_lowRe_DNS = DNS_lowRe_data(:,2);
 % u_mean_lowRe_DNS = DNS_lowRe_data(:,3);
 % u_RMS_lowRe_DNS = DNS_lowRe_data(:,4).^(1/2);

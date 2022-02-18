@@ -131,21 +131,21 @@ saveas(gcf,'Um-y','png');
 % reading part_velocity_data_fluctuation
 for k =0:numfiles-1
 	if k<10                                                         % changing file name to read data
-	%  file_name = sprintf('velocity_32px.6vas9dlb.00000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vas9dlb.00000%d.dat',k);
 	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
-	 file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
+	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
     elseif k<100
-	%  file_name = sprintf('velocity_32px.6vas9dlb.0000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vas9dlb.0000%d.dat',k);
 	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
-	 file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
+	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
     elseif k<1000
-	%  file_name = sprintf('velocity_32px.6vas9dlb.000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vas9dlb.000%d.dat',k);
 	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
-	 file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
+	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
     elseif k<10000 
-	%  file_name = sprintf('velocity_32px.6vas9dlb.00%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vas9dlb.00%d.dat',k);
 	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
-	 file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
+	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
     end
     myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity/%s',file_name);
     % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
@@ -186,7 +186,7 @@ for k =0:numfiles-1
         colormap('jet');                                                    % color type of 'jet'
         box on;                                                             % making flame of figure
         xlim([0 150]);                                                       % range of x
-        ylim([0 60]);                                                     % range of y
+        ylim([10 100]);                                                     % range of y
         set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
         ax = gca;
         ax.TickLength = [0.02 0.1];                                         % scale size to inside from flame
@@ -194,7 +194,7 @@ for k =0:numfiles-1
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
         c = colorbar;                                                       % making color bar
         % c.Limits = [-0.4 0.4];                                                 % range of colorbar
-        c.Limits = [-6 4];                                                 % range of colorbar
+        c.Limits = [-4 4];                                                 % range of colorbar
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
         c.Label.Interpreter = 'latex';                                      % font type of label of color bar

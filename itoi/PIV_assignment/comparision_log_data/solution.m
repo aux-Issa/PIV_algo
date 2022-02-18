@@ -45,9 +45,9 @@ ucross2_solution = log(ycross1) * A_solution + B_solution;
 semilogx(ycross1,ucross1,'-k');
 hold on
 % 水の測定結果をプロット
-semilogx(ycross_water,ucross_water,'-ob');
+% semilogx(ycross_water,ucross_water,'-ob');
 % solutionの測定結果をプロット
-semilogx(ycross,ucross_solution,'-or');
+% semilogx(ycross,ucross_solution,'-or');
 % 水の乱流層をプロット
 semilogx(ycross1,ucross2,'-.k');
 % 粘弾性流体の乱流層をプロット
@@ -56,7 +56,8 @@ xlim([0 1000]);
 ylim([0 25]);
 xlabel('${\it y^+}$','FontSize',20,'Interpreter','latex')
 ylabel('$\overline{\it u^{+}}$','FontSize',20,'Interpreter','latex')
-legend({'\slU^{+}= y^{+}','water','80ppm','\slU^{+}=2.5lny^{+}+5.5','\slU^{+}=11.7lny^{+}-17'},'Location','southeast')
+% legend({'\slU^{+}= y^{+}','water','80ppm','\slU^{+}=2.5lny^{+}+5.5','\slU^{+}=11.7lny^{+}-17'},'Location','southeast')
+legend({'\slU^{+}= y^{+}','\slU^{+}=2.5lny^{+}+5.5','\slU^{+}=11.7lny^{+}-17'},'Location','southeast')
 hold off
 
 % ✔️todo: ，摩擦レイノルズ数で出してみる→対数速分布
