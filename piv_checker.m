@@ -1,59 +1,57 @@
 %%
-close all;   %‘S‚Ä‚Ì}‚ğ–Å‚·
-clear;       %‘S‚Ä‚ğ–³‚ÉŠÒ‚·
-tic;         %ŒvZŠÔŒv‘ªŠJn
+close all;  
+clear;       
+tic;
+
+
 
 
 %%
-%ƒtƒ@ƒCƒ‹‚Ìâ‘ÎƒpƒXŠm”F‚µ‚½HH
-
-
-%%
-%Še”’lƒf[ƒ^‚ğ“ü—Í
-U_pito = 2.06;      %å—¬—¬‘¬(m/s):ƒsƒg[ŠÇ‚ÅŒv‘ª
-T = 20.0;           %ÀŒ±‰·“x()
-% L = 0.65;           %•½”Â‚Ì’·‚³(m)
-ls = 0.55;          %Œv‘ªŠJn’n“_(m)
-numfiles = 100;   %ƒtƒ@ƒCƒ‹”
-xn = 253;           %x•ûŒü‚Ìƒf[ƒ^”i—ñ‚Ì”j
-yn = 253;            %y•ûŒü‚Ìƒf[ƒ^”is‚Ì”j
+%å„æ•°å€¤ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›
+U_pito = 2.06;      %ä¸»æµæµé€Ÿ(m/s):ãƒ”ãƒˆãƒ¼ç®¡ã§è¨ˆæ¸¬
+T = 20.0;           %å®Ÿé¨“æ¸©åº¦(â„ƒ)
+% L = 0.65;           %å¹³æ¿ã®é•·ã•(m)
+ls = 0.55;          %è¨ˆæ¸¬é–‹å§‹åœ°ç‚¹(m)
+numfiles = 100;   %ãƒ•ã‚¡ã‚¤ãƒ«æ•°
+xn = 253;           %xæ–¹å‘ã®ãƒ‡ãƒ¼ã‚¿æ•°ï¼ˆåˆ—ã®æ•°ï¼‰
+yn = 253;            %yæ–¹å‘ã®ãƒ‡ãƒ¼ã‚¿æ•°ï¼ˆè¡Œã®æ•°ï¼‰
 n = 1;
 
 %%
-%ƒTƒU[ƒ‰ƒ“ƒh‚Ì®‚É‚æ‚é”S«ŒW”‚ÌZo‚Æ“®”S«ŒW”‚ÌZo
-T_0 = 0;             %Šî–{‰·“x()
-mu_0 = 1.72*10^-5;   %Šî–{”S«ŒW”(Pa*s)
-C = 111;             %ƒTƒU[ƒ‰ƒ“ƒhŒW”(K)
-P = 1013;            %‹Cˆ³(hPa)
-R = 2.87;            %Š£‘‡‹ó‹C‚Ì‹C‘Ì’è”
+%ã‚µã‚¶ãƒ¼ãƒ©ãƒ³ãƒ‰ã®å¼ã«ã‚ˆã‚‹ç²˜æ€§ä¿‚æ•°ã®ç®—å‡ºã¨å‹•ç²˜æ€§ä¿‚æ•°ã®ç®—å‡º
+T_0 = 0;             %åŸºæœ¬æ¸©åº¦(â„ƒ)
+mu_0 = 1.72*10^-5;   %åŸºæœ¬ç²˜æ€§ä¿‚æ•°(Pa*s)
+C = 111;             %ã‚µã‚¶ãƒ¼ãƒ©ãƒ³ãƒ‰ä¿‚æ•°(K)
+P = 1013;            %æ°—åœ§(hPa)
+R = 2.87;            %ä¹¾ç‡¥ç©ºæ°—ã®æ°—ä½“å®šæ•°
 
-T_0 = T_0 + 273.15;   % -> K
-T = T + 273.15;       % -> K
+T_0 = T_0 + 273.15;   %â„ƒ -> K
+T = T + 273.15;       %â„ƒ -> K
 
-mu = mu_0 * (T / T_0)^(3/2) * (T_0 + C) / (T + C);   %”S«ŒW”(Pa*s)
-rho = P / (R * T);                                    %‹ó‹C‚Ì–§“x(kg/m^3)
-nu = mu / rho;                                        %“®”S«ŒW”(m^2/s)
+mu = mu_0 * (T / T_0)^(3/2) * (T_0 + C) / (T + C);   %ç²˜æ€§ä¿‚æ•°(Pa*s)
+rho = P / (R * T);                                    %ç©ºæ°—ã®å¯†åº¦(kg/m^3)
+nu = mu / rho;                                        %å‹•ç²˜æ€§ä¿‚æ•°(m^2/s)
 
 
 %%
-%‘JˆÚ‚Ìn‚Ü‚è‚ÌˆÊ’u‚Ì”’lŒvZ—\‘z
-% Rex_min = 3.0*10^5;   %‘JˆÚƒŒƒCƒmƒ‹ƒY”‚ÌÅ¬’l
-% Rex_max = 5.0*10^5;   %‘JˆÚƒŒƒCƒmƒ‹ƒY”‚ÌÅ‘å’l
+%é·ç§»ã®å§‹ã¾ã‚Šã®ä½ç½®ã®æ•°å€¤è¨ˆç®—äºˆæƒ³
+% Rex_min = 3.0*10^5;   %é·ç§»ãƒ¬ã‚¤ãƒãƒ«ã‚ºæ•°ã®æœ€å°å€¤
+% Rex_max = 5.0*10^5;   %é·ç§»ãƒ¬ã‚¤ãƒãƒ«ã‚ºæ•°ã®æœ€å¤§å€¤
 % 
-% tr_s_min = Rex_min * nu / U_pito;       %‘JˆÚˆÊ’u‚ÌÅ¬’l(m)
-% tr_s_max = Rex_max * nu / U_pito;       %‘JˆÚˆÊ’u‚ÌÅ‘å’l(m)
-% tr_s_avg = (tr_s_min + tr_s_max) / 2;   %•½‹Ï’l(m)
+% tr_s_min = Rex_min * nu / U_pito;       %é·ç§»ä½ç½®ã®æœ€å°å€¤(m)
+% tr_s_max = Rex_max * nu / U_pito;       %é·ç§»ä½ç½®ã®æœ€å¤§å€¤(m)
+% tr_s_avg = (tr_s_min + tr_s_max) / 2;   %å¹³å‡å€¤(m)
 
 
 %%
-%‹«ŠE‘wŒú‚³i‘w—¬j
+%å¢ƒç•Œå±¤åšã•ï¼ˆå±¤æµï¼‰
 delta_laminar = 5 * sqrt(nu * ls / U_pito);
 delta_turbulence = 0.37 * ls *(nu / U_pito / ls)^0.2;
 
 
 %%
-%ƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^‚Ì“Ç‚İæ‚è
-data = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
+%ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å–ã‚Š
+data = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
 
 %     for j = 1:numfiles
 %         if j-1 < 10
@@ -77,7 +75,7 @@ data = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
         end
     data{j,1} = readmatrix(myfilename);
     end
-% path—vŠm”F
+% pathè¦ç¢ºèª
 %     for j = 1:numfiles
 %         if j-1 < 10
 %            myfilename = sprintf('F:/APG/u2.0ms_range50_100images_validation/u2.0ms.6s3cw2c8.00000%d.txt',j-1);
@@ -91,48 +89,48 @@ data = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
 
 
 %%
-%x,yÀ•Wƒf[ƒ^‚Ì“Ç‚İæ‚è
-    X_swap = zeros(yn,xn);   %ƒ[ƒs—ñ‚Æ‚µ‚Ä’è‹`
-    Y_swap = zeros(yn,xn);   %ƒ[ƒs—ñ‚Æ‚µ‚Ä’è‹`
+%x,yåº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å–ã‚Š
+    X_swap = zeros(yn,xn);   %ã‚¼ãƒ­è¡Œåˆ—ã¨ã—ã¦å®šç¾©
+    Y_swap = zeros(yn,xn);   %ã‚¼ãƒ­è¡Œåˆ—ã¨ã—ã¦å®šç¾©
 
-    x = data{1,1}(:,5);           %xÀ•W
-    X = reshape(x,yn,xn);         %xÀ•W‚ğyn*xns—ñ‚É•ÏŠ·
+    x = data{1,1}(:,5);           %xåº§æ¨™
+    X = reshape(x,yn,xn);         %xåº§æ¨™ã‚’yn*xnè¡Œåˆ—ã«å¤‰æ›
     X = X.';
     X = X + 525;
 %      for i = 1:yn
 %          X_swap(:,i) = X(:,yn+1-i);
 %      end
 %      X(:,:) = X_swap(:,:);
-%     X = sort(X,2);          %xÀ•W‚ğ¶‰E”½“]i¶Œ´“_j
+%     X = sort(X,2);          %xåº§æ¨™ã‚’å·¦å³åè»¢ï¼ˆå·¦åŸç‚¹ï¼‰
 
-    y = data{1,1}(:,6);                  %yÀ•W
-    Y = reshape(y,yn,xn);                %yÀ•W‚ğyn*xns—ñ‚É•ÏŠ·
+    y = data{1,1}(:,6);                  %yåº§æ¨™
+    Y = reshape(y,yn,xn);                %yåº§æ¨™ã‚’yn*xnè¡Œåˆ—ã«å¤‰æ›
     Y = Y.';
-    Y = sort(Y,'descend');               %yÀ•W‚ğ~‡‚É‚·‚é
+    Y = sort(Y,'descend');               %yåº§æ¨™ã‚’é™é †ã«ã™ã‚‹
     Yadjust = Y - 19;
 %     for j = 1:xn
 %         Y_swap(:,j) = Y(:,xn+1-j);
 %     end
-%     Y(:,:) = Y_swap(:,:);                %yÀ•W‚ğ¶‰E”½“]i¶Œ´“_ji‚±‚Ì‘€ì‚Í‚â‚ç‚È‚­‚Ä‚à•Ï‚í‚ç‚È‚¢‚Í‚¸j
+%     Y(:,:) = Y_swap(:,:);                %yåº§æ¨™ã‚’å·¦å³åè»¢ï¼ˆå·¦åŸç‚¹ï¼‰ï¼ˆã“ã®æ“ä½œã¯ã‚„ã‚‰ãªãã¦ã‚‚å¤‰ã‚ã‚‰ãªã„ã¯ãšï¼‰
 
 
 %%
-%‘¬“xu,v‚Ì“Ç‚İæ‚è
-u = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-U = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-v = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-V = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-U_swap = zeros(yn,xn);     %ƒ[ƒs—ñ‚Æ‚µ‚Ä’è‹`
-V_swap = zeros(yn,xn);     %ƒ[ƒs—ñ‚Æ‚µ‚Ä’è‹`
+%é€Ÿåº¦u,vã®èª­ã¿å–ã‚Š
+u = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+U = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+v = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+V = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+U_swap = zeros(yn,xn);     %ã‚¼ãƒ­è¡Œåˆ—ã¨ã—ã¦å®šç¾©
+V_swap = zeros(yn,xn);     %ã‚¼ãƒ­è¡Œåˆ—ã¨ã—ã¦å®šç¾©
 
     for j = 1:numfiles
-        u{j,1}(:) = data{j,1}(:,9);               %x•ûŒü‚Ì‘¬“x¬•ªu
-        u{j,1}(:) = -1 * u{j,1}(:);               %u‚ğ³‚Ì’l‚É•ÏŠ·
-        U{j,1}(:,:) = reshape(u{j,1}(:),yn,xn);   %u‚ğyn*xns—ñ‚É•ÏŠ·
+        u{j,1}(:) = data{j,1}(:,9);               %xæ–¹å‘ã®é€Ÿåº¦æˆåˆ†u
+        u{j,1}(:) = -1 * u{j,1}(:);               %uã‚’æ­£ã®å€¤ã«å¤‰æ›
+        U{j,1}(:,:) = reshape(u{j,1}(:),yn,xn);   %uã‚’yn*xnè¡Œåˆ—ã«å¤‰æ›
         U{j,1}(:,:) = U{j,1}(:,:).';
  
-        v{j,1}(:) = data{j,1}(:,10);               %x•ûŒü‚Ì‘¬“x¬•ªu
-        V{j,1}(:,:) = reshape(v{j,1}(:),yn,xn);   %u‚ğyn*xns—ñ‚É•ÏŠ·
+        v{j,1}(:) = data{j,1}(:,10);               %xæ–¹å‘ã®é€Ÿåº¦æˆåˆ†u
+        V{j,1}(:,:) = reshape(v{j,1}(:),yn,xn);   %uã‚’yn*xnè¡Œåˆ—ã«å¤‰æ›
         V{j,1}(:,:) = V{j,1}(:,:).';        
         
         for i = 1:yn
@@ -153,7 +151,7 @@ V_swap = zeros(yn,xn);     %ƒ[ƒs—ñ‚Æ‚µ‚Ä’è‹`
 
 
 %%
-%•½‹Ïå—¬—¬‘¬‚ğZo
+%å¹³å‡ä¸»æµæµé€Ÿã‚’ç®—å‡º
 U_sum = zeros(yn,xn);
 U_tavg_sum = zeros(yn,1);
 V_sum = zeros(yn,xn);
@@ -191,7 +189,7 @@ c.Label.FontName = 'Times';
 caxis([0 2.2]);
 n = n + 1;
 
-%u—p
+%ç¬æ™‚ç”¨
 % for i = 91:100
 %     figure(n)
 %     contourf(X(1:162,:),Yadjust(1:162,:),U{i,1}(1:162,:),7)
@@ -229,7 +227,7 @@ n = n + 1;
 % n = n + 1;
 
 
-%•Ç–@‘¥iƒÑw‚Í“K“–‚É‘ã“üj
+%å£æ³•å‰‡ï¼ˆÏ„wã¯é©å½“ã«ä»£å…¥ï¼‰
 tau = 0.009;
 kappa = 0.4;
 kappa1 = 0.21;
@@ -266,12 +264,12 @@ n = n + 1;
 
 
 %%
-%u'RMS,v'RMS,ƒŒƒCƒmƒ‹ƒY‚¹‚ñ’f‰—Í
-u_henndou = cell(numfiles,1);    %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-u_henndouS = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
+%u'RMS,v'RMS,ãƒ¬ã‚¤ãƒãƒ«ã‚ºã›ã‚“æ–­å¿œåŠ›
+u_henndou = cell(numfiles,1);    %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+u_henndouS = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
 u_henndouS_sum = zeros(yn,xn);
-v_henndou = cell(numfiles,1);    %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
-v_henndouS = cell(numfiles,1);   %cell”z—ñ‚Ì‘å‚«‚³‚ğ’è‹`
+v_henndou = cell(numfiles,1);    %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
+v_henndouS = cell(numfiles,1);   %cellé…åˆ—ã®å¤§ãã•ã‚’å®šç¾©
 v_henndouS_sum = zeros(yn,xn);
 taure1 = cell(numfiles,1);
 taure_sum = zeros(yn,xn);
@@ -318,7 +316,7 @@ taure_sum = zeros(yn,xn);
     Ruv = -1 * taure_tavg ./ uvrms;
     
     Ruv_sum = zeros(yn,1);
-%w’è‚µ‚½”ÍˆÍor‘S‘Ì‚Å‚Ì—¬‚ê•ûŒü•½‹Ï
+%æŒ‡å®šã—ãŸç¯„å›²orå…¨ä½“ã§ã®æµã‚Œæ–¹å‘å¹³å‡
 %     for i = 33:63
 %         Ruv_sum = Ruv_sum + Ruv(:,i);
 %     end
@@ -391,7 +389,7 @@ n = n + 1;
 
 
 %%
-%Cp•ª•z
+%Cpåˆ†å¸ƒ
 cp_ysum = zeros(1,xn);
 
 for i = 16:36
@@ -418,7 +416,7 @@ cp = 1 - cp2;
 
 
 %%
-%ƒuƒ‰ƒWƒEƒX‰ğ‚Æ‚Ì”äŠr
+%ãƒ–ãƒ©ã‚¸ã‚¦ã‚¹è§£ã¨ã®æ¯”è¼ƒ
 % Parameters of Blasius Equation
 U_inf = 1;
 L = 10;
@@ -477,7 +475,7 @@ eta5 = eta4sum / 74;
 
 figure(n)
 sz = 20;
-scatter(ublasius(1:162,1),eta2(1:162,1),sz);  %eta2‚ÍŠÔ•½‹Ï‚µ‚½‚à‚Ì@eta5‚Í‚»‚ê‚¼‚ê‚Ìx‚ÅŒvZ‚µ•½‹Ï‚µ‚½‚à‚Ì
+scatter(ublasius(1:162,1),eta2(1:162,1),sz);  %eta2ã¯æ™‚é–“å¹³å‡ã—ãŸã‚‚ã®ã€€eta5ã¯ãã‚Œãã‚Œã®xã§è¨ˆç®—ã—å¹³å‡ã—ãŸã‚‚ã®
 grid on
 grid minor
 box on
@@ -496,9 +494,9 @@ n = n + 1;
 
 
 %%
-%”rœŒú‚³‚Æ‰^“®—ÊŒú‚³‚ÌŒvZCÅŒã‚ÉŒ`óŒW”‚ÌZo
-Yadjust_T = Yadjust(1:162,1)';   %‹«ŠE‘wŒú‚³‚ğ‹‚ß‚é‚Æ‚«‚ÌÏ•ª”ÍˆÍ‚Å‚ ‚éyÀ•W
-Yadjust_T(1,163) = 0;            %•Ç–Êã‚ÌÀ•W‚ğ’Ç‰Á:y=0
+%æ’é™¤åšã•ã¨é‹å‹•é‡åšã•ã®è¨ˆç®—ï¼Œæœ€å¾Œã«å½¢çŠ¶ä¿‚æ•°ã®ç®—å‡º
+Yadjust_T = Yadjust(1:162,1)';   %å¢ƒç•Œå±¤åšã•ã‚’æ±‚ã‚ã‚‹ã¨ãã®ç©åˆ†ç¯„å›²ã§ã‚ã‚‹yåº§æ¨™
+Yadjust_T(1,163) = 0;            %å£é¢ä¸Šã®åº§æ¨™ã‚’è¿½åŠ :y=0
 
 UH = U_0(1:162,1);
 UH(163,1) = 0;
@@ -508,46 +506,46 @@ utUmu = UH .* Umu;
 Umu_T = Umu';
 utUmu_T = utUmu';
 
-blt_dis_T = trapz(Yadjust_T,Umu_T,2);     %(U-u)‚ğ‘äŒ`Ï•ª
-blt_mom_T = trapz(Yadjust_T,utUmu_T,2);   %u(U-u)‚ğ‘äŒ`Ï•ª
+blt_dis_T = trapz(Yadjust_T,Umu_T,2);     %(U-u)ã‚’å°å½¢ç©åˆ†
+blt_mom_T = trapz(Yadjust_T,utUmu_T,2);   %u(U-u)ã‚’å°å½¢ç©åˆ†
 
 blt_dis_TT = blt_dis_T';
-blt_dis = blt_dis_TT / UH(1,1);    %”rœŒú‚³‚Ìx•ûŒü•ª•z
+blt_dis = blt_dis_TT / UH(1,1);    %æ’é™¤åšã•ã®xæ–¹å‘åˆ†å¸ƒ
 
 UH2 = UH(1,1)^2;
 blt_mom_TT = blt_mom_T';
-blt_mom = blt_mom_TT / UH2;   %‰^“®—ÊŒú‚³‚Ìx•ûŒü•ª•z
+blt_mom = blt_mom_TT / UH2;   %é‹å‹•é‡åšã•ã®xæ–¹å‘åˆ†å¸ƒ
 
-H = blt_dis / blt_mom;            %Œ`óŒW”‚ÌZoix•ûŒü•ª•zj
+H = blt_dis / blt_mom;            %å½¢çŠ¶ä¿‚æ•°ã®ç®—å‡ºï¼ˆxæ–¹å‘åˆ†å¸ƒï¼‰
 
-% %”rœŒú‚³ƒÂ*•ª•z}‚ğo—Í
-% figure(n);                            %n–‡–Ú‚Ì}
-% sz = 20;                              %ƒvƒƒbƒgƒTƒCƒY•ÏX
-% scatter(X(1,:),blt_dis{setn,1},sz);   %U•z}
-% xlabel('\slx\rm/L');                  %x²ƒ‰ƒxƒ‹
-% ylabel('\delta^*');                   %y²ƒ‰ƒxƒ‹
-% title('Displacement thickness');      %}‚Ì–¼‘O
-% n = n + 1;                            %}‚Ì”Ô†’²®
+% %æ’é™¤åšã•Î´*åˆ†å¸ƒå›³ã‚’å‡ºåŠ›
+% figure(n);                            %næšç›®ã®å›³
+% sz = 20;                              %ãƒ—ãƒ­ãƒƒãƒˆã‚µã‚¤ã‚ºå¤‰æ›´
+% scatter(X(1,:),blt_dis{setn,1},sz);   %æ•£å¸ƒå›³
+% xlabel('\slx\rm/L');                  %xè»¸ãƒ©ãƒ™ãƒ«
+% ylabel('\delta^*');                   %yè»¸ãƒ©ãƒ™ãƒ«
+% title('Displacement thickness');      %å›³ã®åå‰
+% n = n + 1;                            %å›³ã®ç•ªå·èª¿æ•´
 % 
-% %”rœŒú‚³ƒÆ•ª•z}‚ğo—Í
-% figure(n);                            %n–‡–Ú‚Ì}
-% sz = 20;                              %ƒvƒƒbƒgƒTƒCƒY•ÏX
-% scatter(X(1,:),blt_mom{setn,1},sz);   %U•z}
-% xlabel('\slx\rm/L');                  %x²ƒ‰ƒxƒ‹
-% ylabel('\theta');                      %y²ƒ‰ƒxƒ‹
-% title('Momentum thickness');          %}‚Ì–¼‘O
-% n = n + 1;                            %}‚Ì”Ô†’²®
+% %æ’é™¤åšã•Î¸åˆ†å¸ƒå›³ã‚’å‡ºåŠ›
+% figure(n);                            %næšç›®ã®å›³
+% sz = 20;                              %ãƒ—ãƒ­ãƒƒãƒˆã‚µã‚¤ã‚ºå¤‰æ›´
+% scatter(X(1,:),blt_mom{setn,1},sz);   %æ•£å¸ƒå›³
+% xlabel('\slx\rm/L');                  %xè»¸ãƒ©ãƒ™ãƒ«
+% ylabel('\theta');                      %yè»¸ãƒ©ãƒ™ãƒ«
+% title('Momentum thickness');          %å›³ã®åå‰
+% n = n + 1;                            %å›³ã®ç•ªå·èª¿æ•´
 % 
-%Œ`óŒW”H•ª•z}‚ğo—Í
-% figure(n);                      %n–‡–Ú‚Ì}
-% sz = 20;                        %ƒvƒƒbƒgƒTƒCƒY•ÏX
-% scatter(X(1,:),H{setn,1},sz);   %U•z}
-% xlabel('\slx\rm/L');            %x²ƒ‰ƒxƒ‹
-% ylabel('\slH');                 %y²ƒ‰ƒxƒ‹
-% title('Shape factor');          %}‚Ì–¼‘O
-% n = n + 1;                      %}‚Ì”Ô†’²®
+%å½¢çŠ¶ä¿‚æ•°Håˆ†å¸ƒå›³ã‚’å‡ºåŠ›
+% figure(n);                      %næšç›®ã®å›³
+% sz = 20;                        %ãƒ—ãƒ­ãƒƒãƒˆã‚µã‚¤ã‚ºå¤‰æ›´
+% scatter(X(1,:),H{setn,1},sz);   %æ•£å¸ƒå›³
+% xlabel('\slx\rm/L');            %xè»¸ãƒ©ãƒ™ãƒ«
+% ylabel('\slH');                 %yè»¸ãƒ©ãƒ™ãƒ«
+% title('Shape factor');          %å›³ã®åå‰
+% n = n + 1;                      %å›³ã®ç•ªå·èª¿æ•´
 
 
 %%
-toc;   %ŒvZŠÔŒv‘ªI—¹
+toc;   %è¨ˆç®—æ™‚é–“è¨ˆæ¸¬çµ‚äº†
 
