@@ -168,7 +168,7 @@ for k =0:numfiles-1
 % 変動の四乗平均(flatness)
     uu_Flatness(:,:,1)  = base(:,:,1)+uf(:,:,1).*uf(:,:,1).*uf(:,:,1).*uf(:,:,2)/double(numfiles);
     uu_Flatness(:,:,2)  = base(:,:,2)+uf(:,:,2).*uf(:,:,2).*uf(:,:,2).*uf(:,:,2)/double(numfiles);
-    % uu_Skewness(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
+    uu_Skewness(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
 
 
 
