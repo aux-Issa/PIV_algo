@@ -186,7 +186,7 @@ for k =0:numfiles-1
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
 
         c = load('session_C','c').c;                                                       % making color bar
-        % c.Limits = [-0.4 0.4];                                                 % range of colorbar
+        c.Limits = [-0.4 0.4];                                                 % range of colorbar
         c.Limits = [-4 4];                                                 % range of colorbar
         c.FontSize = 18;                                                    % font size of scale of color bar
         c.TickLabelInterpreter = 'latex';                                   % font type of scale of color bar
