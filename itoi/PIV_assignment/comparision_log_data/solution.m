@@ -47,7 +47,7 @@ hold on
 % 水の測定結果をプロット
 % semilogx(ycross_water,ucross_water,'-ob');
 % solutionの測定結果をプロット
-% semilogx(ycross,ucross_solution,'-or');
+semilogx(ycross,ucross_solution,'-or');
 % 水の乱流層をプロット
 semilogx(ycross1,ucross2,'-.k');
 % 粘弾性流体の乱流層をプロット
@@ -66,4 +66,5 @@ hold off
 
 % 渡辺の論文にuとv，Re応力の結果
 % DNS（バルクレイノルズ数じゃなくて摩擦レイノルズ数）の結果　https://www.rs.tus.ac.jp/t2lab/db/
-
+% skewnessやflatnessで議論してみても良いかも
+% 修論や先行研究で他の観点でデータを議論していく
