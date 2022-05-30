@@ -70,8 +70,8 @@ end
     ums(:,1)  = mean(um(:,:,1),2);                                  % emsemble ave. u
     ums(:,2)  = mean(um(:,:,2),2);                                  % emsemble ave. u
 
-% %%
-% % 2D-figure
+%%
+% 2D-figure
 figure;
 newpoints = m*3;
 [xq,yq] = meshgrid(...                                              % making fine mesh
@@ -103,8 +103,8 @@ c.Label.String = '$${\it \overline{u}}/{\it U_b}$$';                % label of c
 %c.Label.String = '$${\it \overline{u^+}}$$';                       % label of color bar
 c.Label.FontSize = 20;                                              % font size of label of color bar
 saveas(gcf,'Umxy','png');                                           % output
-% 
-% %%
+
+%%
 % 1D-figure
 figure;
 % p = plot(decimate(x(1:n,1,2),2)/h,decimate(ums(:,1),2)/ub,'ko');
@@ -141,13 +141,14 @@ for k =0:numfiles-1
 	elseif k<10000 
 	 file_name = sprintf('0415velocity.6ylneeem.00%d.dat',k);
 	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
-    end
+  end
+    % fileを読み込み
     myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0415velocity/%s',file_name);
-    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0217fixed_velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
-    % 変動を算出
+
+    % 変動
     uf(:,:,1)  = u(:,:,1)-ums(:,1);
     uf(:,:,2)  = u(:,:,2)-ums(:,2);
     uf(:,:,3)  = -uf(:,:,1).*uf(:,:,2);
@@ -159,17 +160,16 @@ for k =0:numfiles-1
     base = zeros(n,m,3);
     uu_Skewness(:,:,1)  = base(:,:,1)+uf(:,:,1).*uf(:,:,1).*uf(:,:,1)/double(numfiles);
     uu_Skewness(:,:,2)  = base(:,:,2)+uf(:,:,2).*uf(:,:,2).*uf(:,:,2)/double(numfiles);
-
     % 変動の四乗平均(flatness)
     uu_Flatness(:,:,1)  = base(:,:,1)+uf(:,:,1).*uf(:,:,1).*uf(:,:,1).*uf(:,:,2)/double(numfiles);
     uu_Flatness(:,:,2)  = base(:,:,2)+uf(:,:,2).*uf(:,:,2).*uf(:,:,2).*uf(:,:,2)/double(numfiles);
     % uu_Skewness(:,:,3)  = uu(:,:,3)+uf(:,:,3)/double(numfiles);
+
     U_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,1),xq,yq,'spline');         % interpolation
     V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,2),xq,yq,'spline');         % interpolation
     U_dash_times_V_dash= interp2(x(:,:,1),x(:,:,2),uf(:,:,3),xq,yq,'spline');         % interpolation
 
-% uの変動を分布図に
-
+    % uの変動の瞬時場
     % if k == 6 || k == 8|| k == 14
     if k == 6
         [cc_solution_dash,hc_solution_dash]=contourf(xq*ut/vis,yq*ut/vis,U_dash/ut,8);                   % making isoline
@@ -223,8 +223,8 @@ for k =0:numfiles-1
     %     c.Label.FontSize = 20;                                              % font size of label of color bar
     %     fig_name = sprintf('V_dash_solution%d',k);
     %     saveas(gcf,fig_name ,'png'); 
-        
     % end  
+
     % レイノルズ剪断応力の瞬時場
     % if k < 15
     if k == 6 || k == 8|| k == 14
@@ -252,6 +252,7 @@ for k =0:numfiles-1
         saveas(gcf,fig_name ,'png'); 
         % saveas(gcf,'fig' ,'png'); 
     end  
+
     % skewness(歪度)を算出
     % if k < 15
     % if k == 6 || k == 7 || k == 8|| k == 14
@@ -274,6 +275,7 @@ for k =0:numfiles-1
     %     % ylim([0 60])
     %     hold off
     % end 
+
     % flatnessを算出
     % if k < 15
     % if k == 6 || k == 7 || k == 8|| k == 14
@@ -332,6 +334,7 @@ subplot(2,2,2);
 solution_plot_Xaxis = x(1:n,1,2)*ut/vis
 solution_u_RMS_plot_Yaxis = uus(:,1)/ut
 solution_v_RMS_plot_Yaxis = uus(:,2)/ut
+
 % RMSのグラフ作成に必要な変数を保存
 save('session_solutionRMS','solution_plot_Xaxis','solution_u_RMS_plot_Yaxis', 'solution_v_RMS_plot_Yaxis')
 p = plot(x(1:n,1,2)*ut/vis,uus(:,2)/ut,'k^');
