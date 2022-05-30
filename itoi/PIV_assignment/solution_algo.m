@@ -45,20 +45,15 @@ x          = x/1000;                                               % xy data [mm
 % reading part_velocity_data_average
 for k =0:numfiles-1
 	if k<10                                                        % changing file name to read data
-     file_name = sprintf('0415velocity.6ylneeem.00000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
+    file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
 	elseif k<100
-	 file_name = sprintf('0415velocity.6ylneeem.0000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
+    file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
 	elseif k<1000
-	 file_name = sprintf('0415velocity.6ylneeem.000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
+    file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
 	elseif k<10000 
-	 file_name = sprintf('0415velocity.6ylneeem.00%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
-    end
-    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0415velocity/%s',file_name);
+    file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
+  end
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
@@ -130,20 +125,16 @@ saveas(gcf,'Um-y','png');
 % reading part_velocity_data_fluctuation
 for k =0:numfiles-1
 	if k<10                                                         % changing file name to read data
-	 file_name = sprintf('0415velocity.6ylneeem.00000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
 	elseif k<100
-	 file_name = sprintf('0415velocity.6ylneeem.0000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.0000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
 	elseif k<1000
-	 file_name = sprintf('0415velocity.6ylneeem.000%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.000%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
 	elseif k<10000 
-	 file_name = sprintf('0415velocity.6ylneeem.00%d.dat',k);
-	%  file_name = sprintf('previous_water_Flow_images.6wb7297o.00%d.dat',k);
+	 file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
   end
     % fileを読み込み
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/0415velocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
@@ -185,7 +176,7 @@ for k =0:numfiles-1
         xlabel('${\it x^+}$','FontSize',20,'Interpreter','latex');           % xlabel, its size, and type
         ylabel('${\it y^+}$','FontSize',20,'Interpreter','latex');           % ylabel, its size, and type
 
-        c = load('session_C','c').c;                                                       % making color bar
+        % c = load('session_C','c').c;                                                       % making color bar
         c.Limits = [-0.4 0.4];                                                 % range of colorbar
         c.Limits = [-4 4];                                                 % range of colorbar
         c.FontSize = 18;                                                    % font size of scale of color bar
