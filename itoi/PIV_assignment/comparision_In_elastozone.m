@@ -82,3 +82,4 @@ p_v_solution.MarkerFaceColor = 'red';
 legend({'water','80ppm'},'Location','northeast')
 hold off 
 toc;
+% todo: 関数定義 and (他の言語に置き換え AWS S3とかにCSVアップロードできてもいいかも)
