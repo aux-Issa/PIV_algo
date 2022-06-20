@@ -38,7 +38,7 @@ p_u_solution.MarkerFaceColor = 'red';
 p_u_DNS = plot(y_cross_DNS,u_RMS_DNS,'k-');
 % p_u_lowRe_DNS = plot(y_cross_lowRe_DNS,u_RMS_lowRe_DNS,'k^');
 
-legend({'water','80ppm','DNS'},'Location','northeast')
+legend({'water','80ppm','water-DNS'},'Location','northeast')
 hold off 
 f = f + 1;
 
