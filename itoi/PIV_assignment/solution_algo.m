@@ -9,7 +9,8 @@ tic;                                % start of measuring the elapsed time
 % parameter part
 numfiles = 500;                     % total number of file                      
 m        = 127;                      % number of x direction
-n        = 108;                      % number of y direction
+% n        = 108;                      % number of y direction
+n        = 111;                      % number of y direction
 ub       = 0.335;                    % bulk velocity [m/s]
 % 補正前の壁面せん断応力                  
 % tauw     = 0.23;
@@ -33,27 +34,27 @@ uu       = zeros(n,m,3);            % matlix for velocity fluctuation
 % It is noted that the normal direction is reversed in the calculation owting to the wall location.
 %%
 % reading part_coordinate_data
-loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/coordinate_32px_v2.6vas9dlb.000000.dat');                                        % inputting file name
+loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity_v2/coord_velocity_v2.dat');                                        % inputting file name
+% loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/coordinate_32px_v2.6vas9dlb.000000.dat');                                        % inputting file name
 coord      = importdata(loadname);                                 % making structure of above
 x(:,:,1)   = rot90(reshape(coord.data(:,1),[m n]));                % x data [mm]
 x(:,:,2)   = rot90(reshape(coord.data(:,2),[m n]));                % y data [mm]
 x(:,:,2)   = flip(x(:,:,2),1);                                     % y data [mm] with flip
 x          = x/1000;                                               % xy data [mm]��[m]
 
-
 %%
 % reading part_velocity_data_average
 for k =0:numfiles-1
 	if k<10                                                        % changing file name to read data
-    file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
+    file_name = sprintf('velocity_v3.710rtc9n.00000%d.dat',k);
 	elseif k<100
-    file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
+    file_name = sprintf('velocity_v3.710rtc9n.0000%d.dat',k);
 	elseif k<1000
-    file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
+    file_name = sprintf('velocity_v3.710rtc9n.000%d.dat',k);
 	elseif k<10000 
-    file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
+    file_name = sprintf('velocity_v3.710rtc9n.00%d.dat',k);
   end
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity_v3/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
@@ -125,16 +126,16 @@ saveas(gcf,'Um-y','png');
 % reading part_velocity_data_fluctuation
 for k =0:numfiles-1
 	if k<10                                                         % changing file name to read data
-	 file_name = sprintf('velocity_32px.6vayg6cd.00000%d.dat',k);
+	 file_name = sprintf('velocity_v3.710rtc9n.00000%d.dat',k);
 	elseif k<100
-	 file_name = sprintf('velocity_32px.6vayg6cd.0000%d.dat',k);
+	 file_name = sprintf('velocity_v3.710rtc9n.0000%d.dat',k);
 	elseif k<1000
-	 file_name = sprintf('velocity_32px.6vayg6cd.000%d.dat',k);
+	 file_name = sprintf('velocity_v3.710rtc9n.000%d.dat',k);
 	elseif k<10000 
-	 file_name = sprintf('velocity_32px.6vayg6cd.00%d.dat',k);
+	 file_name = sprintf('velocity_v3.710rtc9n.00%d.dat',k);
   end
     % fileを読み込み
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity_v3/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
     u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
