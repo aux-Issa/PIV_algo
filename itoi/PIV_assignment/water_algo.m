@@ -1,14 +1,16 @@
 %%
-close all;                          % close all figures
+close all;                          % close all figure(f)s
 clear;                              % clear all variables
 clc;                                % clear the command terminal
 tic;                                % start of measuring the elapsed time
 
 %%
 % parameter part
-numfiles = 500;                     % total number of file                      
+% numfiles = 500;                     % total number of file                      
+numfiles = 100;                     % total number of file                      
 m        = 127;                      % number of x direction
-n        = 108;                      % number of y direction
+% n        = 108;                      % number of y direction
+n        = 111;                      % number of y direction
 ub       = 0.335;                   % bulk velocity [m/s]
 % 補正前の壁面せん断応力                  
 % tauw     = 0.5132;
@@ -21,7 +23,7 @@ vis      = 0.000000893;             % kinetic viscosity [m^2/s]
 h        = 0.02;                    % chanel half height [m]
 um       = zeros(n,m,2);            % matlix for velocity 
 uu       = zeros(n,m,3);            % matlix for velocity fluctuation
-
+f = 1;
 %  input vec. 
 %                  wall
 %                   m
@@ -32,7 +34,8 @@ uu       = zeros(n,m,3);            % matlix for velocity fluctuation
 % It is noted that the normal direction is reversed in the calculation owting to the wall location.
 %%
 % reading part_coordinate_data
-loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/coordinate_32px_v2.6vas9dlb.000000.dat');                                        % inputting file name
+loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experiment.6vaxq7zy/velocity_v2/coord_velocity_v2.dat');                                        % inputting file name% inputting file name
+% loadname   = ('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/coordinate_32px_v2.6vas9dlb.000000.dat');                                        % inputting file name
 coord      = importdata(loadname);                                 % making structure of above
 x(:,:,1)   = rot90(reshape(coord.data(:,1),[m n]));                % x data [mm]
 x(:,:,2)   = rot90(reshape(coord.data(:,2),[m n]));                % y data [mm]
@@ -42,36 +45,34 @@ x          = x/1000;                                               % xy data [mm
 
 %%
 % reading part_velocity_data_average
+% velocity_v3.70f7fwuc
 for k =0:numfiles-1
-    if k<10                                                        % changing file name to read data
-	 file_name = sprintf('velocity_32px.6vas9dlb.00000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
-    elseif k<100
-	 file_name = sprintf('velocity_32px.6vas9dlb.0000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
-    elseif k<1000
-	 file_name = sprintf('velocity_32px.6vas9dlb.000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
-    elseif k<10000 
-	 file_name = sprintf('velocity_32px.6vas9dlb.00%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
-    end
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity/%s',file_name);
-    % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
-    mydata     = importdata(myfilename);
-    u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
-    u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
+  if k<10                                                        % changing file name to read data
+    file_name = sprintf('velocity_v3.70f7fwuc.00000%d.dat',k);
+  elseif k<100
+    file_name = sprintf('velocity_v3.70f7fwuc.0000%d.dat',k);
+  elseif k<1000
+    file_name = sprintf('velocity_v3.70f7fwuc.000%d.dat',k);
+  elseif k<10000 
+    file_name = sprintf('velocity_v3.70f7fwuc.00%d.dat',k);
+  end
+  myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v3/%s',file_name);
+  % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
+  mydata     = importdata(myfilename);
+  u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
+  u(:,:,2)   = -rot90(reshape(mydata.data(:,2),[m n]));           % v
 
-    um(:,:,1)  = um(:,:,1)+u(:,:,1)/double(numfiles);               % time ave. u
-    um(:,:,2)  = um(:,:,2)+u(:,:,2)/double(numfiles);               % time ave. v
+  um(:,:,1)  = um(:,:,1)+u(:,:,1)/double(numfiles);               % time ave. u
+  um(:,:,2)  = um(:,:,2)+u(:,:,2)/double(numfiles);               % time ave. v
 end
 
     ums(:,1)  = mean(um(:,:,1),2);                                  % emsemble ave. u
     ums(:,2)  = mean(um(:,:,2),2);                                  % emsemble ave. u
 
 % %%
-% % 2D-figure
-figure;
+% % 2D-figure(f)
+figure(f);
+f = f + 1;
 newpoints = m*3;
 % クエリグリッドを作成
 [xq,yq] = meshgrid(...                                              % making fine mesh
@@ -85,7 +86,7 @@ Umxy = interp2(x(:,:,1),x(:,:,2),um(:,:,1),xq,yq,'spline');         % interpolat
 hc.TextStep = 0.4;                                                  % interval isoline
 hc.ShowText = 'off';                                                % isoline text off
 colormap('jet');                                                    % color type of 'jet'
-box on;                                                             % making flame of figure
+box on;                                                             % making flame of figure(f)
 % xlim([0 4]);                                                       % range of x
 % ylim([0 0.5]);                                                     % range of y
 set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
@@ -106,8 +107,9 @@ c.Label.FontSize = 20;                                              % font size 
 saveas(gcf,'Umxy','png');                                           % output
 % 
 % %%
-% 1D-figure
-figure;
+% 1D-figure(f)
+figure(f);
+f = f + 1;
 % p = plot(decimate(x(1:n,1,2),2)/h,decimate(ums(:,1),2)/ub,'ko');
 p = plot(x(1:n,1,2)/h,ums(:,1)/ub,'ko');
 p.LineWidth = 1.2;
@@ -129,25 +131,19 @@ saveas(gcf,'Um-y','png');
 
 %%
 % reading part_velocity_data_fluctuation
+% velocity_v2.70f48iit.000000.dat
+% velocity_v3.70f7fwuc.000000.dat
 for k =0:numfiles-1
-	if k<10                                                         % changing file name to read data
-	 file_name = sprintf('velocity_32px.6vas9dlb.00000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00000%d.dat',k);
-    elseif k<100
-	 file_name = sprintf('velocity_32px.6vas9dlb.0000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.0000%d.dat',k);
-    elseif k<1000
-	 file_name = sprintf('velocity_32px.6vas9dlb.000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.000%d.dat',k);
-    elseif k<10000 
-	 file_name = sprintf('velocity_32px.6vas9dlb.00%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
-	%  file_name = sprintf('0217fixed_velocity.6wbrf3a3.00%d.dat',k);
-    end
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity/%s',file_name);
+  if k<10                                                         % changing file name to read data
+    file_name = sprintf('velocity_v3.70f7fwuc.00000%d.dat',k);
+  elseif k<100
+    file_name = sprintf('velocity_v3.70f7fwuc.0000%d.dat',k);
+  elseif k<1000
+    file_name = sprintf('velocity_v3.70f7fwuc.000%d.dat',k);
+  elseif k<10000 
+    file_name = sprintf('velocity_v3.70f7fwuc.00%d.dat',k);
+  end
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v3/%s',file_name);
     % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
@@ -184,7 +180,7 @@ for k =0:numfiles-1
         hc_water_dash.TextStep = 0.4;                                                  % interval isoline
         hc_water_dash.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
-        box on;                                                             % making flame of figure
+        box on;                                                             % making flame of figure(f)
         xlim([0 150]);                                                       % range of x
         ylim([10 100]);                                                     % range of y
         set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
@@ -214,7 +210,7 @@ for k =0:numfiles-1
         hc_water_v_dash.TextStep = 0.4;                                                  % interval isoline
         hc_water_v_dash.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
-        box on;                                                             % making flame of figure
+        box on;                                                             % making flame of figure(f)
         xlim([0 150]);                                                       % range of x
         ylim([0 60]);                                                     % range of y
         set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
@@ -242,7 +238,7 @@ for k =0:numfiles-1
         hc_water_ReStress.TextStep = 0.4;                                                  % interval isoline
         hc_water_ReStress.ShowText = 'off';                                                % isoline text off
         colormap('jet');                                                    % color type of 'jet'
-        box on;                                                             % making flame of figure
+        box on;                                                             % making flame of figure(f)
         xlim([0 150]);                                                       % range of x
         ylim([0 60]);                                                     % range of y
         set( gca, 'FontName','Times','FontSize',18);                        % font and its size of axes 
@@ -265,7 +261,7 @@ for k =0:numfiles-1
 
     % % skewness(歪度)を算出
     % if k == 6 || k == 7 || k == 8|| k == 14
-    %     figure(n)
+    %     figure(f)(n)
     %     grid on
     %     grid minor
     %     box on
@@ -286,7 +282,7 @@ for k =0:numfiles-1
     % end 
     % % flatnessを算出
     % % if k == 6 || k == 7 || k == 8|| k == 14
-    % %     figure(n)
+    % %     figure(f)(n)
     % %     grid on
     % %     grid minor
     % %     box on
@@ -314,8 +310,9 @@ end
     uus(:,3)      = mean(uu(:,:,3),2);
     euv(1:n-1,1)  = uus(1:n-1,3)./diff(ums(:,1)).*diff(x(:,1,2));
 % 
-% 1D-figure
-figure;
+% 1D-figure(f)
+figure(f);
+f = f + 1
 subplot(2,2,1);
 % p = plot(x(1:n,1,2)/h,uus(:,1)/ut,'ko');
 p = plot(x(1:n,1,2)*ut/vis,uus(:,1)/ut,'ko');
