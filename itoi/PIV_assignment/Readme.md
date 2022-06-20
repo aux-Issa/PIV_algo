@@ -14,14 +14,15 @@ PIVデータ（/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/80ppm_experim
   壁面の座標を(より壁面よりに範囲を広げた)変更したもの
 
 water
-
+BasePath: /Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3
+・velocity_v3: 壁面の座標を(より壁面よりに範囲を広げた)変更したもの
+・velocity_v4: v3にRangeValidationを加えたもの
 
 ・実験時に確認すること
 速度分布チェック→rmsチェック
 
 
 ファイル実行順序(sessionに保存される値の関係)
-<<<<<<< HEAD
 water_algo.m → water.m(sessionに水のデータ保存)
 solution_algo.m → solution.m (水と80ppmを対数即に載せる)
           OR
