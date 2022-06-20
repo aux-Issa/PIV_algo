@@ -45,18 +45,18 @@ x          = x/1000;                                               % xy data [mm
 
 %%
 % reading part_velocity_data_average
-% velocity_v3.70f7fwuc
+% velocity_v4.710rm3vn
 for k =0:numfiles-1
   if k<10                                                        % changing file name to read data
-    file_name = sprintf('velocity_v3.70f7fwuc.00000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.00000%d.dat',k);
   elseif k<100
-    file_name = sprintf('velocity_v3.70f7fwuc.0000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.0000%d.dat',k);
   elseif k<1000
-    file_name = sprintf('velocity_v3.70f7fwuc.000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.000%d.dat',k);
   elseif k<10000 
-    file_name = sprintf('velocity_v3.70f7fwuc.00%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.00%d.dat',k);
   end
-  myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v3/%s',file_name);
+  myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v4/%s',file_name);
   % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
   mydata     = importdata(myfilename);
   u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
@@ -132,18 +132,18 @@ saveas(gcf,'Um-y','png');
 %%
 % reading part_velocity_data_fluctuation
 % velocity_v2.70f48iit.000000.dat
-% velocity_v3.70f7fwuc.000000.dat
+% velocity_v4.710rm3vn.000000.dat
 for k =0:numfiles-1
   if k<10                                                         % changing file name to read data
-    file_name = sprintf('velocity_v3.70f7fwuc.00000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.00000%d.dat',k);
   elseif k<100
-    file_name = sprintf('velocity_v3.70f7fwuc.0000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.0000%d.dat',k);
   elseif k<1000
-    file_name = sprintf('velocity_v3.70f7fwuc.000%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.000%d.dat',k);
   elseif k<10000 
-    file_name = sprintf('velocity_v3.70f7fwuc.00%d.dat',k);
+    file_name = sprintf('velocity_v4.710rm3vn.00%d.dat',k);
   end
-    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v3/%s',file_name);
+    myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/water_experiment.6vari2x3/velocity_v4/%s',file_name);
     % myfilename = sprintf('/Volumes/HDCZ-UT/itoi_PIV/water/water_test.6uvaasgh/500micro_500.6v9pqou6/0217fixed_velocity/%s',file_name);
     mydata     = importdata(myfilename);
     u(:,:,1)   = rot90(reshape(mydata.data(:,1),[m n]));            % u
